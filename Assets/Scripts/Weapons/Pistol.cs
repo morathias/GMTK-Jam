@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,15 +9,20 @@ public class Pistol : MonoBehaviour
     public Transform spawnPoint;
     public float cadence;
     
-    [Space]
+    [Header("Bullet")]
     public Bullet bulletPrefab;
+    public float bulletLifetime = 3;
+    
+    [Header("Animations")]
+    public Animator animator;
     
     private float cooldown;
     private ObjectPool<Bullet> pool;
     private bool CanShoot => Time.time > cooldown;
 
-    public float bulletLifetime = 3;
-    
+
+    private static readonly int Shoot1 = Animator.StringToHash("Shoot");
+
     private void Awake()
     {
         pool = new ObjectPool<Bullet>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool);
@@ -29,6 +36,7 @@ public class Pistol : MonoBehaviour
         bullet.transform.forward = spawnPoint.forward;
         bullet.AddForce(spawnPoint.forward);
         StartCoroutine(WaitAndStore(bullet));
+        animator.SetTrigger(Shoot1);
     }
     
     private bool TriggerPressed => Input.GetKey(KeyCode.Mouse0);
@@ -62,5 +70,11 @@ public class Pistol : MonoBehaviour
     private Bullet CreatePooledItem()
     {
         return Instantiate(bulletPrefab);
+    }
+
+    private void OnValidate()
+    {
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
 }
