@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Player>();
-        Spawn(3);
+        Spawn(20);
     }
 
     public void Spawn(int count)
