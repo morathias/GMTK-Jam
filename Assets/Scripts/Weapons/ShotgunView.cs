@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class RailGunView : MonoBehaviour
+public class ShotgunView : MonoBehaviour
 {
     public Animator animator;
-    public RailGun railGun;
+    public Shotgun shotgun;
 
     private void Start()
     {
@@ -12,12 +12,12 @@ public class RailGunView : MonoBehaviour
 
     public void Bind()
     {
-        this.railGun.OnShot += this.OnShotHandler;
+        this.shotgun.OnShot += this.OnShotHandler;
     }
 
     public void Unbind()
     {
-        this.railGun.OnShot -= this.OnShotHandler;
+        this.shotgun.OnShot -= this.OnShotHandler;
     }
 
     private void OnShotHandler()
