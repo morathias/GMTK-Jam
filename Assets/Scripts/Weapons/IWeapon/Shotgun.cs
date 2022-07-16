@@ -8,7 +8,7 @@ public class Shotgun : BaseWeapon
 
     public bool CanShot
     {
-        get { return (Time.time >= this.currentTimeToShot) && !this.blocked  && HasAmmo; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
     }
 
     public AudioSource shootAS;
@@ -22,40 +22,37 @@ public class Shotgun : BaseWeapon
     private float currentTimeToShot;
     private bool blocked;
 
-    public void Shoot()
+    private void Shoot()
     {
-        if (this.CanShot)
+        this.OnShot?.Invoke();
+
+        Vector3 leftDirection = Vector3.Lerp(-this.spawnPoint.right, this.transform.forward, this.spreadAngle.Remap(90, 0, 0, 1));
+        Vector3 rightDirection = Vector3.Lerp(this.spawnPoint.right, this.transform.forward, this.spreadAngle.Remap(90, 0, 0, 1));
+
+        for (int i = 0; i < this.ammoCountPerShot / 2f; i++)
         {
-            this.OnShot?.Invoke();
+            Vector3 direction = Vector3.Lerp(this.spawnPoint.forward, leftDirection, i / (this.ammoCountPerShot / 2f));
+            Pellet pellet = this.GetBulletInstance();
+            pellet.transform.position = this.spawnPoint.position;
+            pellet.transform.forward = this.spawnPoint.forward;
+            pellet.AddForce(direction);
 
-            Vector3 leftDirection = Vector3.Lerp(-this.spawnPoint.right, this.transform.forward, this.spreadAngle.Remap(90, 0, 0, 1));
-            Vector3 rightDirection = Vector3.Lerp(this.spawnPoint.right, this.transform.forward, this.spreadAngle.Remap(90, 0, 0, 1));
-
-            for (int i = 0; i < this.ammoCountPerShot / 2f; i++)
-            {
-                Vector3 direction = Vector3.Lerp(this.spawnPoint.forward, leftDirection, i / (this.ammoCountPerShot / 2f));
-                Pellet pellet = this.GetBulletInstance();
-                pellet.transform.position = this.spawnPoint.position;
-                pellet.transform.forward = this.spawnPoint.forward;
-                pellet.AddForce(direction);
-
-                this.currentTimeToShot = Time.time + this.bulletCooldown;
-            }
-
-            for (int i = 0; i < this.ammoCountPerShot / 2f; i++)
-            {
-                Vector3 direction = Vector3.Lerp(this.spawnPoint.forward, rightDirection, i / (this.ammoCountPerShot / 2f));
-                Pellet pellet = this.GetBulletInstance();
-                pellet.transform.position = this.spawnPoint.position;
-                pellet.transform.forward = this.spawnPoint.forward;
-                pellet.AddForce(direction);
-                this.currentTimeToShot = Time.time + this.bulletCooldown;
-            }
-
-            this.shootAS.Play();
-            this.StartCoroutine(this.AfterFrameSFX());
-            currentAmmo--;
+            this.currentTimeToShot = Time.time + this.bulletCooldown;
         }
+
+        for (int i = 0; i < this.ammoCountPerShot / 2f; i++)
+        {
+            Vector3 direction = Vector3.Lerp(this.spawnPoint.forward, rightDirection, i / (this.ammoCountPerShot / 2f));
+            Pellet pellet = this.GetBulletInstance();
+            pellet.transform.position = this.spawnPoint.position;
+            pellet.transform.forward = this.spawnPoint.forward;
+            pellet.AddForce(direction);
+            this.currentTimeToShot = Time.time + this.bulletCooldown;
+        }
+
+        this.shootAS.Play();
+        this.StartCoroutine(this.AfterFrameSFX());
+        this.currentAmmo--;
     }
 
 
@@ -79,7 +76,7 @@ public class Shotgun : BaseWeapon
     {
         if (Input.GetButton("Fire1"))
         {
-            this.Shoot();
+            this.Trigger();
         }
     }
 
@@ -98,5 +95,11 @@ public class Shotgun : BaseWeapon
         this.blocked = false;
     }
 
-
+    public override void Trigger()
+    {
+        if (this.CanShot)
+        {
+            this.Shoot();
+        }
+    }
 }

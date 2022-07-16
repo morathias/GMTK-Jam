@@ -9,26 +9,23 @@ public class GrenadeLauncher : BaseWeapon
 
     public bool CanShot
     {
-        get { return (Time.time >= this.currentTimeToShot) && !this.blocked && HasAmmo; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
     }
 
     public GrenadeLauncherProjectile projectilePrefab;
     public Transform spawnPoint;
     public float shootingForce;
     public float bulletCooldown;
-    
+
     private bool blocked;
     private float currentTimeToShot;
 
     public void Shoot()
     {
-        if (this.CanShot)
-        {
-            this.OnShot?.Invoke();
-            this.StartCoroutine(this.AfterFrameShot());
-            this.currentTimeToShot = Time.time + this.bulletCooldown;
-            currentAmmo--;
-        }
+        this.OnShot?.Invoke();
+        this.StartCoroutine(this.AfterFrameShot());
+        this.currentTimeToShot = Time.time + this.bulletCooldown;
+        this.currentAmmo--;
     }
 
     private IEnumerator AfterFrameShot()
@@ -44,7 +41,7 @@ public class GrenadeLauncher : BaseWeapon
     {
         if (Input.GetButton("Fire1"))
         {
-            this.Shoot();
+            this.Trigger();
         }
     }
 
@@ -63,5 +60,11 @@ public class GrenadeLauncher : BaseWeapon
         this.blocked = false;
     }
 
-
+    public override void Trigger()
+    {
+        if (this.CanShot)
+        {
+            this.Shoot();
+        }
+    }
 }

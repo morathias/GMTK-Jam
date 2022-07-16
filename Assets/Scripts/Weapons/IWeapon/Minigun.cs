@@ -15,13 +15,13 @@ public class Minigun : BaseWeapon
 
     private bool CanShoot
     {
-        get { return (Time.time > this.currentTimeToShot) && !this.blocked  && HasAmmo; }
+        get { return (Time.time > this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
     }
 
     private bool blocked;
     private static readonly int Shoot1 = Animator.StringToHash("Shoot");
 
-    
+
     private void Shoot()
     {
         this.currentTimeToShot = Time.time + this.cadence;
@@ -30,7 +30,7 @@ public class Minigun : BaseWeapon
         bullet.transform.forward = this.spawnPoint.forward;
         bullet.AddForce(this.spawnPoint.forward);
         this.animator.SetTrigger(Shoot1);
-        currentAmmo--;
+        this.currentAmmo--;
     }
 
     private bool TriggerPressed
@@ -40,10 +40,10 @@ public class Minigun : BaseWeapon
 
     private void Update()
     {
-        if (this.CanShoot &&
+        if (
             this.TriggerPressed)
         {
-            this.Shoot();
+            this.Trigger();
         }
 
         this.animator.SetBool("shoot", this.TriggerPressed);
@@ -79,4 +79,11 @@ public class Minigun : BaseWeapon
         this.blocked = false;
     }
 
+    public override void Trigger()
+    {
+        if (this.CanShoot)
+        {
+            this.Shoot();
+        }
+    }
 }

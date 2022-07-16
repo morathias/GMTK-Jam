@@ -9,7 +9,7 @@ public class Sword : BaseWeapon
 
     public bool CanShot
     {
-        get { return (Time.time >= this.currentTimeToShot) && !this.blocked && HasAmmo; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
     }
 
     public Animator anim;
@@ -21,23 +21,20 @@ public class Sword : BaseWeapon
     private bool blocked;
     private Coroutine hitColliderCoroutine;
 
-    public void Shoot()
+    private void Slash()
     {
-        if (this.CanShot)
+        this.collider.enabled = false;
+
+        if (this.hitColliderCoroutine != null)
         {
-            this.collider.enabled = false;
-
-            if (this.hitColliderCoroutine != null)
-            {
-                this.StopCoroutine(this.hitColliderCoroutine);
-            }
-
-            this.OnShot?.Invoke();
-            this.anim.SetTrigger("hit");
-            this.currentTimeToShot = Time.time + this.bulletCooldown;
-
-            this.hitColliderCoroutine = this.StartCoroutine(this.HitCollider());
+            this.StopCoroutine(this.hitColliderCoroutine);
         }
+
+        this.OnShot?.Invoke();
+        this.anim.SetTrigger("hit");
+        this.currentTimeToShot = Time.time + this.bulletCooldown;
+
+        this.hitColliderCoroutine = this.StartCoroutine(this.HitCollider());
     }
 
     private IEnumerator HitCollider()
@@ -52,7 +49,7 @@ public class Sword : BaseWeapon
     {
         if (Input.GetButton("Fire1"))
         {
-            this.Shoot();
+            this.Trigger();
         }
     }
 
@@ -71,5 +68,16 @@ public class Sword : BaseWeapon
         this.blocked = false;
     }
 
-    public override bool HasAmmo => true;
+    public override bool HasAmmo
+    {
+        get { return true; }
+    }
+
+    public override void Trigger()
+    {
+        if (this.CanShot)
+        {
+            this.Slash();
+        }
+    }
 }

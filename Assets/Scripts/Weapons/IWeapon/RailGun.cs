@@ -8,7 +8,7 @@ public class RailGun : BaseWeapon
 
     public bool CanShot
     {
-        get { return (Time.time >= this.currentTimeToShot) && !this.blocked  && HasAmmo; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
     }
 
     public ParticleSystem projectilePrefab;
@@ -20,25 +20,24 @@ public class RailGun : BaseWeapon
 
     public float damage = 5;
     public float raycastRadius = .5f;
+
     public void Shoot()
     {
-        if (this.CanShot)
+        this.OnShot?.Invoke();
+        this.StartCoroutine(this.AfterFrameShot());
+        this.currentTimeToShot = Time.time + this.bulletCooldown;
+        //raycast shit
+        RaycastHit[] all = Physics.SphereCastAll(this.spawnPoint.position, this.raycastRadius, this.spawnPoint.forward, 100, Physics.AllLayers);
+        for (int i = 0; i < all.Length; i++)
         {
-            this.OnShot?.Invoke();
-            this.StartCoroutine(this.AfterFrameShot());
-            this.currentTimeToShot = Time.time + this.bulletCooldown;
-            //raycast shit
-            RaycastHit[] all = Physics.SphereCastAll(spawnPoint.position, raycastRadius, spawnPoint.forward, 100, Physics.AllLayers);
-            for (int i = 0; i < all.Length; i++)
+            RaycastHit hit = all[i];
+            if (hit.collider.TryGetComponent(out HP hp))
             {
-                RaycastHit hit = all[i];
-                if (hit.collider.TryGetComponent(out HP hp))
-                {
-                    hp.TakeDamage(damage);
-                }
+                hp.TakeDamage(this.damage);
             }
-            currentAmmo--;
         }
+
+        this.currentAmmo--;
     }
 
     private IEnumerator AfterFrameShot()
@@ -61,7 +60,7 @@ public class RailGun : BaseWeapon
     {
         if (Input.GetButton("Fire1"))
         {
-            this.Shoot();
+            this.Trigger();
         }
     }
 
@@ -79,5 +78,12 @@ public class RailGun : BaseWeapon
     {
         this.blocked = false;
     }
-    
+
+    public override void Trigger()
+    {
+        if (this.CanShot)
+        {
+            this.Shoot();
+        }
+    }
 }
