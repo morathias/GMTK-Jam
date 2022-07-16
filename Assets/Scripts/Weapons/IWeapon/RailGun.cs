@@ -8,7 +8,7 @@ public class RailGun : MonoBehaviour, IWeapon
 
     public bool CanShot
     {
-        get { return Time.time >= this.currentTimeToShot; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked; }
     }
 
     public ParticleSystem projectilePrefab;
@@ -16,6 +16,7 @@ public class RailGun : MonoBehaviour, IWeapon
     public float bulletCooldown;
 
     private float currentTimeToShot;
+    private bool blocked;
 
     public void Shoot()
     {
@@ -51,9 +52,19 @@ public class RailGun : MonoBehaviour, IWeapon
             this.Shoot();
         }
     }
-    
+
     public void AddCooldown(float time)
     {
-        currentTimeToShot = Mathf.Max(currentTimeToShot, Time.time + time);
+        this.currentTimeToShot = Mathf.Max(this.currentTimeToShot, Time.time + time);
+    }
+
+    public void Block()
+    {
+        this.blocked = true;
+    }
+
+    public void Resume()
+    {
+        this.blocked = false;
     }
 }

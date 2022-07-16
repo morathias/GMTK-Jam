@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 1252344457}
   - component: {fileID: 37592466231537972}
   - component: {fileID: 3972530084981504753}
+  - component: {fileID: 5793947294728385784}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -438,6 +439,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9998934, y: 2.0671935, z: 2.0276103}
   m_Center: {x: 0, y: 2.671828, z: -0.0000035347757}
+--- !u!114 &5793947294728385784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558341383140995991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6836215e6b2e8424fbe34dabc55bbb8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerJumper: {fileID: 1429496613}
+  allWeapons:
+  - {fileID: 8768058198345388924}
+  - {fileID: 1822731214296845518}
+  - {fileID: 7314804490369338084}
+  - {fileID: 8315513232050319674}
+  - {fileID: 522316936471348119}
+  - {fileID: 3824610120598553164}
 --- !u!1001 &627981546419045107
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class GrenadeLauncher : MonoBehaviour, IWeapon
 
     public bool CanShot
     {
-        get { return Time.time >= this.currentTimeToShot; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked; }
     }
 
     public GrenadeLauncherProjectile projectilePrefab;
@@ -17,6 +17,7 @@ public class GrenadeLauncher : MonoBehaviour, IWeapon
     public float shootingForce;
     public float bulletCooldown;
 
+    private bool blocked;
     private float currentTimeToShot;
 
     public void Shoot()
@@ -46,9 +47,18 @@ public class GrenadeLauncher : MonoBehaviour, IWeapon
         }
     }
 
-
     public void AddCooldown(float time)
     {
-        currentTimeToShot = Mathf.Max(currentTimeToShot, Time.time + time);
+        this.currentTimeToShot = Mathf.Max(this.currentTimeToShot, Time.time + time);
+    }
+
+    public void Block()
+    {
+        this.blocked = true;
+    }
+
+    public void Resume()
+    {
+        this.blocked = false;
     }
 }

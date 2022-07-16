@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sword : MonoBehaviour, IWeapon
@@ -10,7 +9,7 @@ public class Sword : MonoBehaviour, IWeapon
 
     public bool CanShot
     {
-        get { return Time.time >= this.currentTimeToShot; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked; }
     }
 
     public Animator anim;
@@ -19,34 +18,34 @@ public class Sword : MonoBehaviour, IWeapon
     public float bulletCooldown;
 
     private float currentTimeToShot;
-
+    private bool blocked;
     private Coroutine hitColliderCoroutine;
 
     public void Shoot()
     {
         if (this.CanShot)
         {
-            collider.enabled = false;
+            this.collider.enabled = false;
 
-            if (hitColliderCoroutine != null)
+            if (this.hitColliderCoroutine != null)
             {
-                StopCoroutine(hitColliderCoroutine);
+                this.StopCoroutine(this.hitColliderCoroutine);
             }
 
             this.OnShot?.Invoke();
-            anim.SetTrigger("hit");
+            this.anim.SetTrigger("hit");
             this.currentTimeToShot = Time.time + this.bulletCooldown;
 
-            hitColliderCoroutine = StartCoroutine(HitCollider());
+            this.hitColliderCoroutine = this.StartCoroutine(this.HitCollider());
         }
     }
 
     private IEnumerator HitCollider()
     {
-        yield return new WaitForSeconds(colliderTimeToActive);
-        collider.enabled = true;
-        yield return new WaitForSeconds(colliderActiveTime);
-        collider.enabled = false;
+        yield return new WaitForSeconds(this.colliderTimeToActive);
+        this.collider.enabled = true;
+        yield return new WaitForSeconds(this.colliderActiveTime);
+        this.collider.enabled = false;
     }
 
     private void Update()
@@ -56,9 +55,19 @@ public class Sword : MonoBehaviour, IWeapon
             this.Shoot();
         }
     }
-    
+
     public void AddCooldown(float time)
     {
-        currentTimeToShot = Mathf.Max(currentTimeToShot, Time.time + time);
+        this.currentTimeToShot = Mathf.Max(this.currentTimeToShot, Time.time + time);
+    }
+
+    public void Block()
+    {
+        this.blocked = true;
+    }
+
+    public void Resume()
+    {
+        this.blocked = false;
     }
 }
