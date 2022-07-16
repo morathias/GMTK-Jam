@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class World : MonoBehaviour
 {
@@ -11,6 +14,14 @@ public class World : MonoBehaviour
 
     public EnemySpawner enemySpawner;
 
+    public bool IsActive
+    {
+        get { return this.isActive; }
+        set { this.isActive = value; }
+    }
+
+    public List<WallList> wallsToUnlock;
+
     [SerializeField]
     private Vector3[] eulers;
     [SerializeField]
@@ -21,6 +32,10 @@ public class World : MonoBehaviour
     private float minScale;
     [SerializeField]
     private float scaleSpeed;
+    [SerializeField]
+    private bool isActive;
+
+    private int wallUnlockTier;
 
     public void Rotate()
     {
@@ -30,9 +45,27 @@ public class World : MonoBehaviour
         this.StartCoroutine(this.RotateCoroutine(toFace));
     }
 
+    public void UnlockWalls()
+    {
+        if (this.wallUnlockTier < this.wallsToUnlock.Count)
+        {
+            foreach (GameObject wall in this.wallsToUnlock[this.wallUnlockTier].walls)
+            {
+                wall.SetActive(false);
+            }
+
+            this.wallUnlockTier++;
+        }
+    }
+
     public void ScaleDown()
     {
         this.StartCoroutine(this.ScaleDownCoroutine());
+    }
+
+    public void InstaScaleDown()
+    {
+        this.world.localScale = Vector3.one * this.minScale;
     }
 
     private IEnumerator ScaleDownCoroutine()
@@ -62,4 +95,10 @@ public class World : MonoBehaviour
 
         this.world.localEulerAngles = toFace;
     }
+}
+
+[Serializable]
+public class WallList
+{
+    public List<GameObject> walls;
 }
