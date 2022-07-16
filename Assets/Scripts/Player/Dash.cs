@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,7 +21,7 @@ public class Dash : MonoBehaviour
 
     private float cooldown;
     
-    public bool CanDash => Time.time > cooldown || !weaponSwitcher.currentIWeapon.HasAmmo;
+    public bool CanDash => Time.time > cooldown;
     
     private void Start()
     {
@@ -31,13 +30,12 @@ public class Dash : MonoBehaviour
         cooldown = dashCooldown;
     }
 
-    public void DashRoll()
+    public void DashRoll(Vector3 direction)
     {
         player.Block(true);
         rb.isKinematic = false;
         CharController.enabled = false;
         
-        Vector3 direction = GetDashDirection();
         rb.AddForce(direction * dashForce, ForceMode.Impulse);
         Sequence s = DOTween.Sequence();
         Vector3Int rndRot = Vector3Int.FloorToInt((Random.insideUnitSphere.normalized*360*rollCount)/90) * 90;
@@ -66,7 +64,12 @@ public class Dash : MonoBehaviour
     {
         if (CanDash && Input.GetKeyDown(KeyCode.Space))
         {
-            DashRoll();
+            DashRoll(GetDashDirection());
+        }
+
+        if (!weaponSwitcher.currentIWeapon.HasAmmo)
+        {
+            DashRoll(Vector3.zero);
         }
     }
 
