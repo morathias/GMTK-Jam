@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,7 +15,6 @@ public class Dash : MonoBehaviour
     private CharacterController CharController => PlayerMovement.charController;
 
     public WeaponSwitcher weaponSwitcher;
-
     
     public void DashRoll()
     {
@@ -27,7 +24,6 @@ public class Dash : MonoBehaviour
         
         Vector3 direction = GetDashDirection();
         rb.AddForce(direction * dashForce, ForceMode.Impulse);
-        weaponSwitcher.DeactivateCurrentWeapon();
         Sequence s = DOTween.Sequence();
         Vector3Int rndRot = Vector3Int.FloorToInt((Random.insideUnitSphere.normalized*360*rollCount)/90) * 90;
         s.Append(diceView.DORotate( transform.localEulerAngles + rndRot, dashTime).SetEase(Ease.Linear));

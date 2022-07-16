@@ -12,6 +12,7 @@ public class WeaponSwitcher : MonoBehaviour
     public int currentIndex;
     public List<Transform> faceOrientations;
 
+    public Transform orientation;
     private void Start()
     {
         this.SwitchWeapon(this.startingWeaponIndex);
@@ -35,20 +36,15 @@ public class WeaponSwitcher : MonoBehaviour
         RunActivateAnimation(currentWeapon);
     }
 
-    public void DeactivateCurrentWeapon()
-    {
-        currentWeapon.transform.DOScale(0, .1f);
-    }
-
     public void SetWeaponDependingOnFaceOrientation()
     {
-        Transform maxDotResult = faceOrientations.OrderBy(face => Vector3.Dot(face.up, Vector3.up)).Last();
-        Debug.Log(maxDotResult.name);
+        Transform maxDotResult = faceOrientations.OrderBy(face => Vector3.Dot(face.up, orientation.up)).Last();
         SwitchWeapon(faceOrientations.IndexOf(maxDotResult));
     }
     
     private static void RunActivateAnimation(GameObject currentWeapon)
     {
+
         currentWeapon.transform.localScale = Vector3.zero;
         currentWeapon.GetComponent<IWeapon>().AddCooldown(.2f);
         Sequence s = DOTween.Sequence();
