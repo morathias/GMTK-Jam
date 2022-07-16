@@ -468,10 +468,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4546077752412596829, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4558341383140995991, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -520,13 +516,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8718054044366361005, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
+    - target: {fileID: 8718054046205187968, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
+      propertyPath: gravity
+      value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 8718054046205187968, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
+      propertyPath: charController
+      value: 
+      objectReference: {fileID: 1728088060}
     - target: {fileID: 8718054046205187969, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 963194227}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
+--- !u!1 &1728088059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4558341383140995991, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
+  m_PrefabInstance: {fileID: 1728088058}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &1728088060
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728088059}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 4
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 2, z: 0}

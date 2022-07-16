@@ -2,13 +2,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5;
+    public float speed = 12;
+    public CharacterController charController;
+    public float gravity = -10;
+    public Camera camera;
 
-    public Vector3 Direction => new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-    
-    void FixedUpdate()
+    void Update()
     {
-        transform.position += Direction * speed * Time.fixedDeltaTime;
+        Vector3 direction =  camera.transform.right * Input.GetAxis("Horizontal") * speed + camera.transform.forward.ProjectUp().normalized * Input.GetAxis("Vertical") * speed;
+        direction.y += gravity;
+        charController.Move(direction * Time.deltaTime);
+    }
+
+
+    private void OnValidate()
+    {
+        if(camera == null)
+            camera = Camera.main;
     }
     
 }
