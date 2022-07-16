@@ -327,6 +327,7 @@ MonoBehaviour:
   gravity: -20
   camera: {fileID: 0}
   weaponSwitcher: {fileID: 6282754564654928314}
+  animator: {fileID: 8620247829391912524}
 --- !u!114 &8718054046205187969
 MonoBehaviour:
   m_ObjectHideFlags: 0
