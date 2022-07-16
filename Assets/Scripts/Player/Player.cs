@@ -10,4 +10,5 @@ public class Player : MonoBehaviour
         playerMovement.enabled = !blocked;
         playerRotation.enabled = !blocked;
     }
+
 }

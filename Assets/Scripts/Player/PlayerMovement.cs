@@ -6,10 +6,11 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController charController;
     public float gravity = -10;
     public Camera camera;
+    public Vector3 Direction =>  camera.transform.right * Input.GetAxisRaw("Horizontal") * speed + camera.transform.forward.ProjectUp().normalized * Input.GetAxisRaw("Vertical") * speed;
 
     void Update()
     {
-        Vector3 direction =  camera.transform.right * Input.GetAxisRaw("Horizontal") * speed + camera.transform.forward.ProjectUp().normalized * Input.GetAxisRaw("Vertical") * speed;
+        Vector3 direction = Direction;
         direction.y += gravity;
         charController.Move(direction * Time.deltaTime);
     }
