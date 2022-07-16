@@ -8,6 +8,9 @@ public class GrenadeLauncherProjectile : MonoBehaviour
 
     private bool collided;
 
+    public float radius = 4;
+    public float damage = 3;
+    
     private void OnGroundCollisionHandler()
     {
         //explosion, trigger particles
@@ -25,5 +28,14 @@ public class GrenadeLauncherProjectile : MonoBehaviour
         this.OnGroundCollisionHandler();
         this.collided = true;
         this.transform.DOScale(0f, 0.5f).OnComplete(() => Destroy(this.gameObject));
+        Collider[] all = Physics.OverlapSphere(other.contacts[0].point, radius, Physics.AllLayers);
+        for (int i = 0; i < all.Length; i++)
+        {
+            Collider hit = all[i];
+            if (hit.TryGetComponent(out HP hp))
+            {
+                hp.TakeDamage(damage);
+            }
+        }
     }
 }

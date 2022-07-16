@@ -163,6 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onHitVFXPrefab: {fileID: 4653353273312016159, guid: 03491e9f07891c54580c98f8669a056b, type: 3}
   rigidbody: {fileID: 8214997517845249030}
+  radius: 7
+  damage: 3
 --- !u!54 &8214997517845249030
 Rigidbody:
   m_ObjectHideFlags: 0
