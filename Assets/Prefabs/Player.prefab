@@ -282,6 +282,7 @@ MonoBehaviour:
   playerMovement: {fileID: 8718054046205187968}
   playerRotation: {fileID: 8718054046205187969}
   playerView: {fileID: 7248934802135498052}
+  dash: {fileID: 5995021560704185198}
 --- !u!114 &8718054046205187968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +366,7 @@ MonoBehaviour:
   dashForce: 3
   rollCount: 4
   weaponSwitcher: {fileID: 6282754564654928314}
+  playerJumper: {fileID: 1429496613}
 --- !u!143 &1252344457
 CharacterController:
   m_ObjectHideFlags: 0

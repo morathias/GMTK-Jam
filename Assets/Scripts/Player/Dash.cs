@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,7 +16,14 @@ public class Dash : MonoBehaviour
     private CharacterController CharController => PlayerMovement.charController;
 
     public WeaponSwitcher weaponSwitcher;
+    public PlayerJumper playerJumper;
     
+    private void Start()
+    {
+        this.playerJumper.OnJumpStarted += (f) => enabled = false;
+        this.playerJumper.OnLandEnded += () => enabled = true;
+    }
+
     public void DashRoll()
     {
         player.Block(true);

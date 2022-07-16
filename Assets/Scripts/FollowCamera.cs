@@ -8,6 +8,8 @@ public class FollowCamera : MonoBehaviour
         private set;
     }
 
+    public Plane plane;
+    
     public Camera camera;
     public Transform follow;
     public Vector3 offset;
@@ -24,8 +26,8 @@ public class FollowCamera : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-
+        Instance = this;    
+        plane.SetNormalAndPosition(Vector3.up, follow.position);
         this.startingPos = this.transform.localPosition;
         this.startingEuler = this.transform.localEulerAngles;
     }
@@ -40,10 +42,11 @@ public class FollowCamera : MonoBehaviour
 
     private void Follow()
     {
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 worldPosMouse = this.camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Vector3.Distance(this.transform.position, this.follow.position)));
-        Vector3 toFollowPos = new Vector3(this.follow.transform.position.x, this.follow.transform.position.y, this.follow.transform.position.z);
-        Vector3 finalPos = (toFollowPos + worldPosMouse * 0.5f) / 2f;
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        plane.Raycast(ray, out float distance);
+        Vector3 worldPosMouse = ray.GetPoint(distance);
+        Vector3 toFollowPos = follow.transform.position;
+        Vector3 finalPos = (toFollowPos + (toFollowPos + (worldPosMouse - toFollowPos)  * 0.5f)) / 2f;
         this.targetPos = new Vector3(finalPos.x, 0, finalPos.z) + this.offset + this.startingPos;
         this.transform.position = Vector3.SmoothDamp(this.transform.position, this.targetPos
             , ref this.refVelocity, this.defaultMovementSpeed, 500000, Time.unscaledDeltaTime * this.speedMultiplier);
