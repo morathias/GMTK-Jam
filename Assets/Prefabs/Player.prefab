@@ -81,6 +81,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 10
   camera: {fileID: 0}
+  view: {fileID: 4546077752412596829}
+  rotationOffset: {x: 20, y: 0, z: 0}
 --- !u!114 &8718054044488406203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,15 +144,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6048a3e117770746a2045d9de00c67d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6048a3e117770746a2045d9de00c67d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6048a3e117770746a2045d9de00c67d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6048a3e117770746a2045d9de00c67d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
