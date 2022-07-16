@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468b01ebc7c752543b48665949b1aac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 6848475365074267242}
   follow: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
