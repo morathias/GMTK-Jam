@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerJumper : MonoBehaviour
 {
+    public static PlayerJumper Instance
+    {
+        get;
+        private set;
+    }
+
     public event Action<float> OnJumpStarted;
+    public event Action OnJumpEnded;
     public event Action<float> OnLandStarted;
     public event Action OnLandEnded;
 
@@ -17,6 +24,27 @@ public class PlayerJumper : MonoBehaviour
     private float jumpT;
     private bool jumping;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        LevelManager.Instance.OnLevelUpStarted += this.OnLevelUpStartedManager;
+        LevelManager.Instance.OnLevelUpEnded += this.OnLevelUpEndedManager;
+    }
+
+    private void OnLevelUpStartedManager()
+    {
+        this.StartJumpPlayerOut();
+    }
+
+    private void OnLevelUpEndedManager()
+    {
+        this.StartJumpPlayerIn();
+    }
+
     public void StartJumpPlayerOut()
     {
         this.jumping = true;
@@ -28,7 +56,11 @@ public class PlayerJumper : MonoBehaviour
         this.OnJumpStarted?.Invoke(this.jumpTime);
 
         DOTween.To(() => this.jumpT, x => this.jumpT = x, 1, this.jumpTime)
-            .OnComplete(() => this.jumping = false);
+            .OnComplete(() =>
+            {
+                this.OnJumpEnded?.Invoke();
+                this.jumping = false;
+            });
     }
 
     public void StartJumpPlayerIn()
@@ -40,7 +72,6 @@ public class PlayerJumper : MonoBehaviour
         Physics.Raycast(this.transform.position, -Vector3.up, out raycastHit, float.MaxValue);
         this.targetJumpingPosition = raycastHit.point;
         this.characterController.enabled = false;
-
         this.OnLandStarted?.Invoke(this.jumpTime);
 
         DOTween.To(() => this.jumpT, x => this.jumpT = x, 1, this.jumpTime)
@@ -63,19 +94,6 @@ public class PlayerJumper : MonoBehaviour
         if (this.jumping)
         {
             this.JumpPlayer();
-        }
-
-        if (!this.jumping)
-        {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                this.StartJumpPlayerOut();
-            }
-
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                this.StartJumpPlayerIn();
-            }
         }
     }
 }
