@@ -1483,10 +1483,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8718054046205187969, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
-      propertyPath: rotationOffset.x
-      value: -20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
 --- !u!1 &1261159709 stripped
@@ -1580,6 +1576,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3937118, y: 9.292564, z: 2.3937118}
   m_Center: {x: 0.00000020783051, y: 4.6490865, z: -0.0000011441856}
+--- !u!114 &1429496613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1429496613, guid: 30fca8925372aa14295beb90d72d2e22, type: 3}
+  m_PrefabInstance: {fileID: 1252344455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e3cbc2fd65d1541b8d1bc3a9d3784c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1436158604 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4987019466906236192, guid: 63136748807c4ae4fb12483ff7347cc3, type: 3}
@@ -2474,6 +2481,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 187419410, guid: 1551f9b4c78367145a109c594b4d78e5, type: 3}
+      propertyPath: playerJumper
+      value: 
+      objectReference: {fileID: 1429496613}
     - target: {fileID: 6848475364252042701, guid: 1551f9b4c78367145a109c594b4d78e5, type: 3}
       propertyPath: follow
       value: 

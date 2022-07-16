@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6848475365074267247}
   - component: {fileID: 6848475365074267240}
   - component: {fileID: 6848475364252042701}
+  - component: {fileID: 187419410}
   m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -182,3 +183,18 @@ MonoBehaviour:
   rotationOffset: {x: 0, y: 0, z: 0}
   defaultMovementSpeed: 1
   speedMultiplier: 5
+  pause: 0
+--- !u!114 &187419410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848475365074267220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894aff803b7390244954a7425c681d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerJumper: {fileID: 0}
+  targetFov: 40

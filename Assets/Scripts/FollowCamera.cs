@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
+    public static FollowCamera Instance
+    {
+        get;
+        private set;
+    }
+
     public Camera camera;
     public Transform follow;
     public Vector3 offset;
     public Vector3 rotationOffset;
     public float defaultMovementSpeed;
     public float speedMultiplier;
+    public bool pause;
 
     private Quaternion refRotSmoothDamp;
     private Vector3 startingPos;
@@ -17,13 +24,18 @@ public class FollowCamera : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         this.startingPos = this.transform.localPosition;
         this.startingEuler = this.transform.localEulerAngles;
     }
 
     public void LateUpdate()
     {
-        this.Follow();
+        if (!this.pause)
+        {
+            this.Follow();
+        }
     }
 
     private void Follow()
