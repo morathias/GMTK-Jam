@@ -2164,6 +2164,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1567672430}
     m_Modifications:
+    - target: {fileID: 2372431319208276405, guid: 63136748807c4ae4fb12483ff7347cc3, type: 3}
+      propertyPath: enemyToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372431319208276405, guid: 63136748807c4ae4fb12483ff7347cc3, type: 3}
+      propertyPath: enemyToSpawn.Array.data[0]
+      value: 
+      objectReference: {fileID: 6973459776268040065, guid: 439e963e334609a48a96f8d6888ebdd3, type: 3}
+    - target: {fileID: 2372431319208276405, guid: 63136748807c4ae4fb12483ff7347cc3, type: 3}
+      propertyPath: enemyToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 6973459776268040065, guid: b31350c1763e6f4498996c1f5b974b60, type: 3}
     - target: {fileID: 4987019466034372659, guid: 63136748807c4ae4fb12483ff7347cc3, type: 3}
       propertyPath: m_Name
       value: World

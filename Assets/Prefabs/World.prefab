@@ -701,7 +701,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 2372431319208276405}
   wallsToUnlock: []
-  navMeshSurface: {fileID: 0}
   eulers:
   - {x: 0, y: 0, z: 0}
   - {x: -90, y: 0, z: 0}
@@ -20135,25 +20134,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5656137834774379145}
     m_Modifications:
-    - target: {fileID: 6891417039424595040, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
-      propertyPath: m_Size.x
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891417039424595040, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
-      propertyPath: m_Size.z
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891417039424595040, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6891417039424595041, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891417039424595041, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6891417039424595042, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
       propertyPath: m_RootOrder
@@ -20198,10 +20181,6 @@ PrefabInstance:
     - target: {fileID: 6891417039424595042, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6891417039424595043, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
-      propertyPath: spawnCount
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}

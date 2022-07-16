@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6891417039424595042}
   - component: {fileID: 6891417039424595043}
   - component: {fileID: 6891417039424595040}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +49,8 @@ MonoBehaviour:
   enemyToSpawn:
   - {fileID: 6973459776268040065, guid: ee222df8c52d6f0478c8f130203302cc, type: 3}
   - {fileID: 6973459776268040065, guid: 439e963e334609a48a96f8d6888ebdd3, type: 3}
+  - {fileID: 6973459776268040065, guid: b31350c1763e6f4498996c1f5b974b60, type: 3}
+  spawnCount: 3
 --- !u!65 &6891417039424595040
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57,8 +59,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6891417039424595041}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 1, z: 50}
+  m_Size: {x: 35, y: 1, z: 35}
   m_Center: {x: 0, y: 0, z: 0}
