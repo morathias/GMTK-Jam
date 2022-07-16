@@ -82,7 +82,7 @@ MonoBehaviour:
   rotationSpeed: 10
   camera: {fileID: 0}
   view: {fileID: 4546077752412596829}
-  rotationOffset: {x: 20, y: 0, z: 0}
+  rotationOffset: {x: -20, y: 0, z: 0}
 --- !u!114 &8718054044488406203
 MonoBehaviour:
   m_ObjectHideFlags: 0
