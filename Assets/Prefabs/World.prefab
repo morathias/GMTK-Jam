@@ -20148,6 +20148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 6891417039424595041, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6891417039424595042, guid: df91c544fc3a27c44b252ea76bea459e, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -14,15 +14,11 @@ public class PlayerJumper : MonoBehaviour
     public event Action OnJumpEnded;
     public event Action<float> OnLandStarted;
     public event Action OnLandEnded;
+    public LayerMask jumpLM;
 
     public CharacterController characterController;
     public float jumpHeight;
     public float jumpTime;
-
-    private Vector3 targetJumpingPosition;
-    private Vector3 startingJumpPosition;
-    private float jumpT;
-    private bool jumping;
 
     private void Awake()
     {
@@ -47,53 +43,26 @@ public class PlayerJumper : MonoBehaviour
 
     public void StartJumpPlayerOut()
     {
-        this.jumping = true;
-        this.jumpT = 0f;
-        this.startingJumpPosition = this.transform.position;
-        this.targetJumpingPosition = new Vector3(this.startingJumpPosition.x, this.startingJumpPosition.y + this.jumpHeight, this.startingJumpPosition.z);
+        Vector3 targetJumpingPosition = new Vector3(this.transform.position.x, this.transform.position.y + this.jumpHeight, this.transform.position.z);
         this.characterController.enabled = false;
-
         this.OnJumpStarted?.Invoke(this.jumpTime);
-
-        DOTween.To(() => this.jumpT, x => this.jumpT = x, 1, this.jumpTime)
-            .OnComplete(() =>
-            {
-                this.OnJumpEnded?.Invoke();
-                this.jumping = false;
-            });
+        this.transform.DOMove(targetJumpingPosition, this.jumpTime).OnComplete(() => { this.OnJumpEnded?.Invoke(); });
     }
 
     public void StartJumpPlayerIn()
     {
-        this.jumping = true;
-        this.jumpT = 0f;
-        this.startingJumpPosition = this.transform.position;
         RaycastHit raycastHit;
-        Physics.Raycast(this.transform.position, -Vector3.up, out raycastHit, float.MaxValue);
-        this.targetJumpingPosition = raycastHit.point;
+        Physics.Raycast(this.transform.position, -Vector3.up, out raycastHit, float.MaxValue, this.jumpLM);
+        Vector3 targetJumpingPosition = raycastHit.point;
         this.characterController.enabled = false;
         this.OnLandStarted?.Invoke(this.jumpTime);
 
-        DOTween.To(() => this.jumpT, x => this.jumpT = x, 1, this.jumpTime)
+        this.transform.DOMove(targetJumpingPosition, this.jumpTime)
+            .SetEase(Ease.OutBounce)
             .OnComplete(() =>
             {
                 this.OnLandEnded?.Invoke();
-                this.jumping = false;
                 this.characterController.enabled = true;
             });
-    }
-
-    private void JumpPlayer()
-    {
-        Vector3 jumpLerp = Vector3.Lerp(this.startingJumpPosition, this.targetJumpingPosition, this.jumpT);
-        this.transform.position = jumpLerp;
-    }
-
-    private void Update()
-    {
-        if (this.jumping)
-        {
-            this.JumpPlayer();
-        }
     }
 }
