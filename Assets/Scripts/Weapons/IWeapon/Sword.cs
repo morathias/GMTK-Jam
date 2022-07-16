@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class Sword : MonoBehaviour, IWeapon
 {
     public event Action OnShot;
     public Collider collider;
@@ -55,5 +55,10 @@ public class Sword : MonoBehaviour
         {
             this.Shoot();
         }
+    }
+    
+    public void AddCooldown(float time)
+    {
+        currentTimeToShot = Mathf.Max(currentTimeToShot, Time.time + time);
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class RailGun : MonoBehaviour
+public class RailGun : MonoBehaviour, IWeapon
 {
     public event Action OnShot;
 
@@ -50,5 +50,10 @@ public class RailGun : MonoBehaviour
         {
             this.Shoot();
         }
+    }
+    
+    public void AddCooldown(float time)
+    {
+        currentTimeToShot = Mathf.Max(currentTimeToShot, Time.time + time);
     }
 }

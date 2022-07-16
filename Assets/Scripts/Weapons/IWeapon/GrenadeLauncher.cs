@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GrenadeLauncher : MonoBehaviour
+public class GrenadeLauncher : MonoBehaviour, IWeapon
 {
     public event Action OnShot;
 
@@ -44,5 +44,11 @@ public class GrenadeLauncher : MonoBehaviour
         {
             this.Shoot();
         }
+    }
+
+
+    public void AddCooldown(float time)
+    {
+        currentTimeToShot = Mathf.Max(currentTimeToShot, Time.time + time);
     }
 }

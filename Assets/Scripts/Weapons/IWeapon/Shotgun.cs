@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Shotgun : MonoBehaviour
+public class Shotgun : MonoBehaviour, IWeapon
 {
     public event Action OnShot;
 
@@ -79,5 +79,10 @@ public class Shotgun : MonoBehaviour
         {
             this.Shoot();
         }
+    }
+    
+    public void AddCooldown(float time)
+    {
+        currentTimeToShot = Mathf.Max(currentTimeToShot, Time.time + time);
     }
 }

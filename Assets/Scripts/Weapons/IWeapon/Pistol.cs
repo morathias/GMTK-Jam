@@ -1,8 +1,6 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class Pistol : MonoBehaviour
+public class Pistol : MonoBehaviour, IWeapon
 {
     public Transform spawnPoint;
     public float cadence;
@@ -13,14 +11,14 @@ public class Pistol : MonoBehaviour
     [Header("Animations")]
     public Animator animator;
     
-    private float cooldown;
-    private bool CanShoot => Time.time > cooldown;
+    private float currentTimeToShot;
+    private bool CanShoot => Time.time > currentTimeToShot;
 
     private static readonly int Shoot1 = Animator.StringToHash("Shoot");
 
     private void Shoot()
     {
-        cooldown = Time.time + cadence;
+        currentTimeToShot = Time.time + cadence;
         Bullet bullet = GetBulletInstance();
         bullet.transform.position = spawnPoint.position;
         bullet.transform.forward = spawnPoint.forward;
@@ -52,5 +50,10 @@ public class Pistol : MonoBehaviour
     {
         if (animator == null)
             animator = GetComponent<Animator>();
+    }
+    
+    public void AddCooldown(float time)
+    {
+        currentTimeToShot = Mathf.Max(currentTimeToShot, Time.time + time);
     }
 }
