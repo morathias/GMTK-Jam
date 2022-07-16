@@ -826,6 +826,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 741116891866032742, guid: 5e176e807c831f342a45e1162d23ebbc, type: 3}
   spawnPoint: {fileID: 5223114968200709768}
   bulletCooldown: 1
+  damage: 5
+  raycastRadius: 1
 --- !u!1 &5223114968200709769
 GameObject:
   m_ObjectHideFlags: 0

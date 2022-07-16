@@ -18,7 +18,8 @@ public class RailGun : BaseWeapon
     private float currentTimeToShot;
     private bool blocked;
 
-    
+    public float damage = 5;
+    public float raycastRadius = .5f;
     public void Shoot()
     {
         if (this.CanShot)
@@ -27,6 +28,15 @@ public class RailGun : BaseWeapon
             this.StartCoroutine(this.AfterFrameShot());
             this.currentTimeToShot = Time.time + this.bulletCooldown;
             //raycast shit
+            RaycastHit[] all = Physics.SphereCastAll(spawnPoint.position, raycastRadius, spawnPoint.forward, 100, Physics.AllLayers);
+            for (int i = 0; i < all.Length; i++)
+            {
+                RaycastHit hit = all[i];
+                if (hit.collider.TryGetComponent(out HP hp))
+                {
+                    hp.TakeDamage(damage);
+                }
+            }
             currentAmmo--;
         }
     }
