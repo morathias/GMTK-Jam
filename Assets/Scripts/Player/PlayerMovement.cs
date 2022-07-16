@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 direction =  camera.transform.right * Input.GetAxis("Horizontal") * speed + camera.transform.forward.ProjectUp().normalized * Input.GetAxis("Vertical") * speed;
+        Vector3 direction =  camera.transform.right * Input.GetAxisRaw("Horizontal") * speed + camera.transform.forward.ProjectUp().normalized * Input.GetAxisRaw("Vertical") * speed;
         direction.y += gravity;
         charController.Move(direction * Time.deltaTime);
     }
