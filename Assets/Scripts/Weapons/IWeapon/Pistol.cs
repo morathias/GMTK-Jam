@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class Pistol : MonoBehaviour, IWeapon
+public class Pistol : BaseWeapon
 {
     public Transform spawnPoint;
     public float cadence;
@@ -15,13 +16,14 @@ public class Pistol : MonoBehaviour, IWeapon
 
     private bool CanShoot
     {
-        get { return (Time.time > this.currentTimeToShot) && !this.blocked; }
-    }
+        get { return (Time.time > this.currentTimeToShot) && !this.blocked && HasAmmo; }
+    } 
 
     private bool blocked;
 
     private static readonly int Shoot1 = Animator.StringToHash("Shoot");
 
+    
     private void Shoot()
     {
         this.currentTimeToShot = Time.time + this.cadence;
@@ -30,6 +32,7 @@ public class Pistol : MonoBehaviour, IWeapon
         bullet.transform.forward = this.spawnPoint.forward;
         bullet.AddForce(this.spawnPoint.forward);
         this.animator.SetTrigger(Shoot1);
+        currentAmmo--;
     }
 
     private bool TriggerPressed
@@ -61,18 +64,19 @@ public class Pistol : MonoBehaviour, IWeapon
         }
     }
 
-    public void AddCooldown(float time)
+    public override void AddCooldown(float time)
     {
         this.currentTimeToShot = Mathf.Max(this.currentTimeToShot, Time.time + time);
     }
 
-    public void Block()
+    public override void Block()
     {
         this.blocked = true;
     }
 
-    public void Resume()
+    public override void Resume()
     {
         this.blocked = false;
     }
+
 }

@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856f26889e2a7c54dbc293b20966fb56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo: 5
+  speedMultiplier: 1.5
   collider: {fileID: 8129257141152708773}
   anim: {fileID: 3134383370654544344}
   colliderTimeToActive: 0.01

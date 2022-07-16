@@ -644,6 +644,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51658052b74affc4b8b3d906d969432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo: 3
+  speedMultiplier: 1
   projectilePrefab: {fileID: 6602653450762326676, guid: 5de777125b848b64ba2455c87754d70e, type: 3}
   spawnPoint: {fileID: 1701977973}
   shootingForce: 2500

@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786cb3c3207018549b73b91a6a1132d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo: 5
+  speedMultiplier: 0.9
   shootAS: {fileID: 1119335406438269287}
   reloadAS: {fileID: 1119335406438269280}
   projectilePrefab: {fileID: 3564125800261752023, guid: 32bb576f1d4962f459798c01a6c61a89, type: 3}

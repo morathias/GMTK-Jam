@@ -9,6 +9,8 @@ public class Dash : MonoBehaviour
     public Transform diceView;
     public Rigidbody rb;
 
+    public float dashCooldown;
+    
     public float dashTime = .25f;
     public float dashForce = 3;
     public float rollCount = 4;
@@ -17,11 +19,16 @@ public class Dash : MonoBehaviour
 
     public WeaponSwitcher weaponSwitcher;
     public PlayerJumper playerJumper;
+
+    private float cooldown;
+    
+    public bool CanDash => Time.time > cooldown || !weaponSwitcher.currentIWeapon.HasAmmo;
     
     private void Start()
     {
         this.playerJumper.OnJumpStarted += (f) => enabled = false;
         this.playerJumper.OnLandEnded += () => enabled = true;
+        cooldown = dashCooldown;
     }
 
     public void DashRoll()
@@ -44,6 +51,7 @@ public class Dash : MonoBehaviour
             diceView.Rotate(player.playerRotation.rotationOffset, Space.World);
             weaponSwitcher.SetWeaponDependingOnFaceOrientation();
         });
+        cooldown = Time.time + dashCooldown;
     }
   
     private Vector3 GetDashDirection()
@@ -56,10 +64,15 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (CanDash && Input.GetKeyDown(KeyCode.Space))
         {
             DashRoll();
         }
     }
 
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(0,0,800,800), $"CanDash {CanDash}");
+    }
 }

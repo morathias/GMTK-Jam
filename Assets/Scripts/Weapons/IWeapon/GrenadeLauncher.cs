@@ -3,20 +3,20 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GrenadeLauncher : MonoBehaviour, IWeapon
+public class GrenadeLauncher : BaseWeapon
 {
     public event Action OnShot;
 
     public bool CanShot
     {
-        get { return (Time.time >= this.currentTimeToShot) && !this.blocked; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked && HasAmmo; }
     }
 
     public GrenadeLauncherProjectile projectilePrefab;
     public Transform spawnPoint;
     public float shootingForce;
     public float bulletCooldown;
-
+    
     private bool blocked;
     private float currentTimeToShot;
 
@@ -27,6 +27,7 @@ public class GrenadeLauncher : MonoBehaviour, IWeapon
             this.OnShot?.Invoke();
             this.StartCoroutine(this.AfterFrameShot());
             this.currentTimeToShot = Time.time + this.bulletCooldown;
+            currentAmmo--;
         }
     }
 
@@ -47,18 +48,20 @@ public class GrenadeLauncher : MonoBehaviour, IWeapon
         }
     }
 
-    public void AddCooldown(float time)
+    public override void AddCooldown(float time)
     {
         this.currentTimeToShot = Mathf.Max(this.currentTimeToShot, Time.time + time);
     }
 
-    public void Block()
+    public override void Block()
     {
         this.blocked = true;
     }
 
-    public void Resume()
+    public override void Resume()
     {
         this.blocked = false;
     }
+
+
 }

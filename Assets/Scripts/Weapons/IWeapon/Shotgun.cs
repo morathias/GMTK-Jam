@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Shotgun : MonoBehaviour, IWeapon
+public class Shotgun : BaseWeapon
 {
     public event Action OnShot;
 
     public bool CanShot
     {
-        get { return (Time.time >= this.currentTimeToShot) && !this.blocked; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked  && HasAmmo; }
     }
 
     public AudioSource shootAS;
@@ -54,6 +54,7 @@ public class Shotgun : MonoBehaviour, IWeapon
 
             this.shootAS.Play();
             this.StartCoroutine(this.AfterFrameSFX());
+            currentAmmo--;
         }
     }
 
@@ -82,18 +83,20 @@ public class Shotgun : MonoBehaviour, IWeapon
         }
     }
 
-    public void AddCooldown(float time)
+    public override void AddCooldown(float time)
     {
         this.currentTimeToShot = Mathf.Max(this.currentTimeToShot, Time.time + time);
     }
 
-    public void Block()
+    public override void Block()
     {
         this.blocked = true;
     }
 
-    public void Resume()
+    public override void Resume()
     {
         this.blocked = false;
     }
+
+
 }

@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34782622f20b4c28a56979bab6b1cd96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 1
+  amount: 0.5
 --- !u!82 &8302998540312755938
 AudioSource:
   m_ObjectHideFlags: 0

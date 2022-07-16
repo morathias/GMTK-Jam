@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class RailGun : MonoBehaviour, IWeapon
+public class RailGun : BaseWeapon
 {
     public event Action OnShot;
 
     public bool CanShot
     {
-        get { return (Time.time >= this.currentTimeToShot) && !this.blocked; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked  && HasAmmo; }
     }
 
     public ParticleSystem projectilePrefab;
@@ -18,6 +18,7 @@ public class RailGun : MonoBehaviour, IWeapon
     private float currentTimeToShot;
     private bool blocked;
 
+    
     public void Shoot()
     {
         if (this.CanShot)
@@ -26,6 +27,7 @@ public class RailGun : MonoBehaviour, IWeapon
             this.StartCoroutine(this.AfterFrameShot());
             this.currentTimeToShot = Time.time + this.bulletCooldown;
             //raycast shit
+            currentAmmo--;
         }
     }
 
@@ -53,18 +55,19 @@ public class RailGun : MonoBehaviour, IWeapon
         }
     }
 
-    public void AddCooldown(float time)
+    public override void AddCooldown(float time)
     {
         this.currentTimeToShot = Mathf.Max(this.currentTimeToShot, Time.time + time);
     }
 
-    public void Block()
+    public override void Block()
     {
         this.blocked = true;
     }
 
-    public void Resume()
+    public override void Resume()
     {
         this.blocked = false;
     }
+    
 }

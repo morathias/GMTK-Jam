@@ -326,6 +326,7 @@ MonoBehaviour:
   charController: {fileID: 1252344457}
   gravity: -20
   camera: {fileID: 0}
+  weaponSwitcher: {fileID: 6282754564654928314}
 --- !u!114 &8718054046205187969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +390,7 @@ MonoBehaviour:
   player: {fileID: 8718054046205187971}
   diceView: {fileID: 3139038619570077402}
   rb: {fileID: 37592466231537972}
+  dashCooldown: 3
   dashTime: 0.25
   dashForce: 3
   rollCount: 4
@@ -481,7 +483,7 @@ MonoBehaviour:
   - {fileID: 522316936471348119}
   - {fileID: 3824610120598553164}
   startingWeaponIndex: 0
-  currentIndex: 0
+  currentIWeapon: {fileID: 0}
   faceOrientations:
   - {fileID: 1414462111}
   - {fileID: 1885660839}

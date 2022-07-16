@@ -283,6 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a8f91f0b0f61c4aa83b0b8f8686c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo: 20
+  speedMultiplier: 0.3
   spawnPoint: {fileID: 3198082526369806056}
   cadence: 0.1
   bulletPrefab: {fileID: 8381813803574805475, guid: da52c41b61249864787b481b8a8a46a1, type: 3}

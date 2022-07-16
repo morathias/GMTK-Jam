@@ -9,7 +9,7 @@ public class WeaponSwitcher : MonoBehaviour
     public int startingWeaponIndex;
 
     private GameObject currentWeapon;
-    public int currentIndex;
+    public BaseWeapon currentIWeapon;
     public List<Transform> faceOrientations;
 
     public Transform orientation;
@@ -20,19 +20,16 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void SwitchWeapon(int weaponIndex)
     {
-        if ((weaponIndex >= this.allWeapons.Count) ||
-            (this.currentWeapon == this.allWeapons[weaponIndex]))
-        {
-            return;
-        }
-
+        if(currentWeapon)
+            currentWeapon.SetActive(false);
+        
         for (int i = 0; i < this.allWeapons.Count; i++)
         {
             this.allWeapons[i].SetActive(i == weaponIndex);
         }
 
-        currentIndex = weaponIndex;
         currentWeapon = allWeapons[weaponIndex];
+        currentIWeapon = currentWeapon.GetComponent<BaseWeapon>();
         RunActivateAnimation(currentWeapon);
     }
 

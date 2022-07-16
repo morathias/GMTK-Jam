@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Sword : MonoBehaviour, IWeapon
+public class Sword : BaseWeapon
 {
     public event Action OnShot;
     public Collider collider;
 
     public bool CanShot
     {
-        get { return (Time.time >= this.currentTimeToShot) && !this.blocked; }
+        get { return (Time.time >= this.currentTimeToShot) && !this.blocked && HasAmmo; }
     }
 
     public Animator anim;
@@ -56,18 +56,20 @@ public class Sword : MonoBehaviour, IWeapon
         }
     }
 
-    public void AddCooldown(float time)
+    public override void AddCooldown(float time)
     {
         this.currentTimeToShot = Mathf.Max(this.currentTimeToShot, Time.time + time);
     }
 
-    public void Block()
+    public override void Block()
     {
         this.blocked = true;
     }
 
-    public void Resume()
+    public override void Resume()
     {
         this.blocked = false;
     }
+
+    public override bool HasAmmo => true;
 }

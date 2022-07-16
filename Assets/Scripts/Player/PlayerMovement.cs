@@ -8,11 +8,12 @@ public class PlayerMovement : MonoBehaviour
     public Camera camera;
     public Vector3 Direction =>  camera.transform.right * Input.GetAxisRaw("Horizontal") * speed + camera.transform.forward.ProjectUp().normalized * Input.GetAxisRaw("Vertical") * speed;
 
+    public WeaponSwitcher weaponSwitcher; 
     void Update()
     {
         Vector3 direction = Direction;
         direction.y += gravity;
-        charController.Move(direction * Time.deltaTime);
+        charController.Move(direction * Time.deltaTime * weaponSwitcher.currentIWeapon.speedMultiplier);
     }
 
 
