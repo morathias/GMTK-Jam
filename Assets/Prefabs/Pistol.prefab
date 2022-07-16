@@ -81,8 +81,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 3198082526369806056}
   cadence: 0.4
   bulletPrefab: {fileID: 8381813803574805475, guid: a46ac9b9fa1fa7e4f9084f943574044c, type: 3}
-  bulletLifetime: 3
-  animator: {fileID: 0}
+  animator: {fileID: 5697859357181216509}
 --- !u!95 &5697859357181216509
 Animator:
   serializedVersion: 4
