@@ -17,8 +17,7 @@ Shader "Unlit/Bullet"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
+            #pragma multi_compile_instancing
 
             #include "UnityCG.cginc"
 
@@ -37,6 +36,9 @@ Shader "Unlit/Bullet"
 
             half4 _MainColor, _RimColor;
             half _RimPow, _Emission;
+
+            UNITY_INSTANCING_BUFFER_START(Props)
+            UNITY_INSTANCING_BUFFER_END(Props)
 
             v2f vert (appdata v)
             {
