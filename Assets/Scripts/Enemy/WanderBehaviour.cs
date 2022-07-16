@@ -42,7 +42,9 @@ public class WanderBehaviour : MonoBehaviour, EnemyBehaviour
             if(!isIdle)
             {
                 rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
-                rb.transform.forward = Vector3.Lerp(transform.forward, currentDiretion.normalized, speed * Time.deltaTime);
+                var dir = Vector3.Lerp(transform.forward, currentDiretion.normalized, speed * Time.deltaTime);
+                if (dir != Vector3.zero)
+                    rb.transform.forward = dir;
             }
         }
     }

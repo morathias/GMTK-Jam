@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -11,31 +9,22 @@ public class Pistol : MonoBehaviour
     
     [Header("Bullet")]
     public Bullet bulletPrefab;
-    public float bulletLifetime = 3;
     
     [Header("Animations")]
     public Animator animator;
     
     private float cooldown;
-    private ObjectPool<Bullet> pool;
     private bool CanShoot => Time.time > cooldown;
 
-
     private static readonly int Shoot1 = Animator.StringToHash("Shoot");
-
-    private void Awake()
-    {
-        pool = new ObjectPool<Bullet>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool);
-    }
 
     private void Shoot()
     {
         cooldown = Time.time + cadence;
-        Bullet bullet = pool.Get();
+        Bullet bullet = GetBulletInstance();
         bullet.transform.position = spawnPoint.position;
         bullet.transform.forward = spawnPoint.forward;
         bullet.AddForce(spawnPoint.forward);
-        StartCoroutine(WaitAndStore(bullet));
         animator.SetTrigger(Shoot1);
     }
     
@@ -49,27 +38,14 @@ public class Pistol : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitAndStore(Bullet bullet)
+    private Bullet GetBulletInstance()
     {
-        yield return new WaitForSeconds(bulletLifetime);
-        pool.Release(bullet);
-    }
-
-    private void OnReturnedToPool(Bullet obj)
-    {
-        obj.gameObject.SetActive(false);
-        obj.rigidbody.velocity = Vector3.zero;
-    }
-
-    private void OnTakeFromPool(Bullet obj)
-    {
-        obj.gameObject.SetActive(true);
-        obj.transform.forward = spawnPoint.forward;
-    }
-
-    private Bullet CreatePooledItem()
-    {
-        return Instantiate(bulletPrefab);
+        Bullet instance = Instantiate(bulletPrefab);
+        instance.damage.OnDamage += () =>
+        {
+            instance.gameObject.SetActive(false);
+        };
+        return instance;
     }
 
     private void OnValidate()
