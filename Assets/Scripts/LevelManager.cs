@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class LevelManager : MonoBehaviour
 
     public event Action OnLevelUpStarted;
     public event Action OnLevelUpEnded;
+
+    public NavMeshSurface navMeshSurface;
 
     public List<WorldList> worldsToUnlock;
     public List<int> worldUnlockWaves;
@@ -60,7 +63,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator WaitAndSpawnWorlds()
     {
         //Sin esto no vivimos
-        yield return new WaitForSeconds(0.99f);
+        yield return new WaitForSeconds(0.9f);
         if (this.worldUnlockWaves.Contains(this.currentWave))
         {
             foreach (World world in this.worldsToUnlock[this.worldUnlockWaves.IndexOf(this.currentWave)].wordList)
@@ -95,6 +98,12 @@ public class LevelManager : MonoBehaviour
         this.OnLevelUpEnded?.Invoke();
         yield return new WaitForSeconds(this.timeBeforeSpawn);
         this.SpawnEnemies();
+        this.ReBakeNavMesh();
+    }
+
+    public void ReBakeNavMesh()
+    {
+        this.navMeshSurface.BuildNavMesh();
     }
 
     private void UnlockWallsForNewWorld()
@@ -108,6 +117,7 @@ public class LevelManager : MonoBehaviour
     private void SpawnEnemies()
     {
         this.allEnemies.Clear();
+
         List<Enemy> allNewEnemies = new List<Enemy>();
         foreach (World world in this.allWorlds.Where(x => x.IsActive))
         {
