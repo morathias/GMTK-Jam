@@ -75,7 +75,7 @@ public class Shotgun : MonoBehaviour, IWeapon
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             this.Shoot();
         }
