@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8381813803574805475}
   - component: {fileID: 2604857839086184667}
   - component: {fileID: 8302998540312755938}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: PlayerMinigunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

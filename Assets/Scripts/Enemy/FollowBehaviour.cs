@@ -10,7 +10,6 @@ public class FollowBehaviour : MonoBehaviour, EnemyBehaviour
     [SerializeField]
     private float rotSpeed;
 
-
     private void Awake()
     {
         this.rb = this.GetComponent<Rigidbody>();

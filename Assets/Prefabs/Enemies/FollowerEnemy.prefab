@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 2133716140724915113}
   - component: {fileID: 2133716140724915112}
   - component: {fileID: 5093987922210587823}
+  - component: {fileID: 3703433378651533635}
   m_Layer: 7
   m_Name: FollowerEnemy
   m_TagString: Untagged
@@ -223,6 +224,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 3
   maxHP: 3
+--- !u!114 &3703433378651533635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133716140724915095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188b0be8324cd4045a9e3b5a682ddb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyHP: {fileID: 5093987922210587823}
 --- !u!1 &7383026245724767950
 GameObject:
   m_ObjectHideFlags: 0
