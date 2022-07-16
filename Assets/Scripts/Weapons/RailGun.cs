@@ -40,7 +40,8 @@ public class RailGun : MonoBehaviour
     {
         ParticleSystem newProjectile = Instantiate(this.projectilePrefab);
         newProjectile.transform.position = this.spawnPoint.position;
-        newProjectile.transform.parent = this.spawnPoint;
+        //newProjectile.transform.parent = this.spawnPoint;
+        newProjectile.transform.forward = this.spawnPoint.forward;
     }
 
     private void Update()
