@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowBehaviour : MonoBehaviour , EnemyBehaviour
+public class FollowBehaviour : MonoBehaviour, EnemyBehaviour
 {
     private Player player;
     private Rigidbody rb;
 
-    [SerializeField] private float speed;
-    [SerializeField] private float rotSpeed;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float rotSpeed;
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        this.rb = this.GetComponent<Rigidbody>();
     }
 
     public void Setup(Player player)
@@ -23,7 +23,12 @@ public class FollowBehaviour : MonoBehaviour , EnemyBehaviour
 
     public void Update()
     {
-        rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
-        rb.transform.forward = Vector3.Lerp(transform.forward, (player.transform.position - transform.position).normalized, speed * Time.deltaTime);
+        if (this.player == null)
+        {
+            return;
+        }
+
+        this.rb.MovePosition(this.transform.position + this.transform.forward * this.speed * Time.deltaTime);
+        this.rb.transform.forward = Vector3.Lerp(this.transform.forward, (this.player.transform.position - this.transform.position).normalized, this.speed * Time.deltaTime);
     }
 }

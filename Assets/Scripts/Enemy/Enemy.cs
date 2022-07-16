@@ -1,22 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public event Action<Enemy> OnFinishedBouncing;
+    public float bounceDownTime;
+
     private EnemyBehaviour[] enemyBehaviours;
 
     private void Awake()
     {
-        enemyBehaviours = GetComponentsInChildren<EnemyBehaviour>();
+        this.enemyBehaviours = this.GetComponentsInChildren<EnemyBehaviour>();
+    }
+
+    public void BounceDown()
+    {
+        RaycastHit raycastHit;
+        Physics.Raycast(this.transform.position, -this.transform.up, out raycastHit, float.MaxValue);
+        Vector3 targetPos = raycastHit.point;
+        this.transform.DOMove(targetPos, this.bounceDownTime).SetEase(Ease.OutBounce).OnComplete(() => this.OnFinishedBouncing?.Invoke(this));
     }
 
     public void SetupBehaviours(Player player)
     {
-        foreach (var item in enemyBehaviours)
+        foreach (EnemyBehaviour item in this.enemyBehaviours)
         {
             item.Setup(player);
         }
     }
-
 }

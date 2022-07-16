@@ -1,33 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public BoxCollider boxCollider;
     public Enemy[] enemyToSpawn;
+    public int spawnCount;
 
     private Player player;
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
-        Spawn(20);
+        this.player = FindObjectOfType<Player>();
+        //this.Spawn(this.spawnCount);
     }
 
     public void Spawn(int count)
     {
         for (int i = 0; i < count; i++)
         {
-            Enemy enemy = Instantiate(enemyToSpawn[Random.Range(0, enemyToSpawn.Length)]);
-            enemy.transform.position = new Vector3(Random.Range(boxCollider.bounds.min.x, boxCollider.bounds.max.x), 0, Random.Range(boxCollider.bounds.min.z, boxCollider.bounds.max.z));
-            enemy.SetupBehaviours(player);
+            Enemy enemy = Instantiate(this.enemyToSpawn[Random.Range(0, this.enemyToSpawn.Length)]);
+            enemy.transform.position = new Vector3(Random.Range(this.boxCollider.bounds.min.x, this.boxCollider.bounds.max.x), this.transform.position.y, Random.Range(this.boxCollider.bounds.min.z, this.boxCollider.bounds.max.z));
+            enemy.BounceDown();
+            enemy.OnFinishedBouncing += this.OnEnemyFinishedBouncing;
         }
+    }
+
+    private void OnEnemyFinishedBouncing(Enemy enemy)
+    {
+        enemy.OnFinishedBouncing -= this.OnEnemyFinishedBouncing;
+        enemy.SetupBehaviours(this.player);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, boxCollider.size);
+        Gizmos.DrawWireCube(this.transform.position, this.boxCollider.size);
     }
 }

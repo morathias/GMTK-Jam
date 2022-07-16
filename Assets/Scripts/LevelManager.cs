@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     public event Action OnLevelUpEnded;
 
     public List<World> allWorlds;
+    public float timeBeforeSpawn;
     public float levelUpTime;
 
     private void Awake()
@@ -32,6 +33,16 @@ public class LevelManager : MonoBehaviour
     {
         yield return new WaitForSeconds(this.levelUpTime);
         this.OnLevelUpEnded?.Invoke();
+        yield return new WaitForSeconds(this.timeBeforeSpawn);
+        this.SpawnEnemies();
+    }
+
+    private void SpawnEnemies()
+    {
+        foreach (World world in this.allWorlds)
+        {
+            world.enemySpawner.Spawn(world.CurrentFace + 1);
+        }
     }
 
     private void Update()

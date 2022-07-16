@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class World : MonoBehaviour
 {
+    public int CurrentFace
+    {
+        get;
+        private set;
+    }
+
+    public EnemySpawner enemySpawner;
+
     [SerializeField]
     private Vector3[] eulers;
     [SerializeField]
@@ -16,7 +24,9 @@ public class World : MonoBehaviour
 
     public void Rotate()
     {
-        Vector3 toFace = this.eulers[Random.Range(0, this.eulers.Length)];
+        int faceIndex = Random.Range(0, this.eulers.Length);
+        Vector3 toFace = this.eulers[faceIndex];
+        this.CurrentFace = faceIndex;
         this.StartCoroutine(this.RotateCoroutine(toFace));
     }
 
