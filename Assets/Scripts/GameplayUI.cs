@@ -9,8 +9,9 @@ public class GameplayUI : MonoBehaviour
 {
     [SerializeField] HP PlayerHP;
     [SerializeField] Image hpBar;
+    [SerializeField] Animator anim;
 
-    [SerializeField] TextMeshProUGUI wave;
+    [SerializeField] TextMeshProUGUI[] waveTexts;
 
     [SerializeField] LevelManager levelManager;
 
@@ -24,11 +25,15 @@ public class GameplayUI : MonoBehaviour
 
     private void UpdateWaveView()
     {
-        wave.text = "Wave " + (levelManager.currentWave +1);
+        foreach (var item in waveTexts)
+        {
+            item.text = "Wave " + (levelManager.currentWave + 1);
+        }
     }
 
     private void UpdatePlayerHP()
     {
+        anim.SetTrigger("hit");
         hpBar.fillAmount = PlayerHP.currentHP / PlayerHP.maxHP;
     }
 
