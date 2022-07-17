@@ -13,6 +13,8 @@ public class Dash : MonoBehaviour
     public float dashForce = 3;
     public float rollCount = 4;
 
+    public AudioSource dashSfx;
+
     private PlayerMovement PlayerMovement
     {
         get { return this.player.playerMovement; }
@@ -53,6 +55,7 @@ public class Dash : MonoBehaviour
 
     public void DashRoll(Vector3 direction)
     {
+        dashSfx.Play();
         this.player.Block(true);
         this.rb.isKinematic = false;
         this.CharController.enabled = false;
