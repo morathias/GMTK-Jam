@@ -15,6 +15,8 @@ public class Minigun : BaseWeapon
     private Plane plane;
     public bool shouldAimMouse = true;
 
+    public ParticleSystem muzzle;
+
     private bool CanShoot
     {
         get { return (Time.time > this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
@@ -33,6 +35,10 @@ public class Minigun : BaseWeapon
         bullet.AddForce(this.spawnPoint.forward);
         this.animator.SetTrigger(Shoot1);
         this.currentAmmo--;
+        if (muzzle != null)
+        {
+            muzzle.Play();
+        }
     }
 
     private bool TriggerPressed

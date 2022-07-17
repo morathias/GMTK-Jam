@@ -14,6 +14,8 @@ public class Pistol : BaseWeapon
     private float currentTimeToShot;
     public bool shouldAimMouse = true;
 
+    public ParticleSystem muzzle;
+
     public bool CanShoot
     {
         get { return (Time.time > this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
@@ -41,6 +43,10 @@ public class Pistol : BaseWeapon
         bullet.AddForce(this.spawnPoint.forward);
         this.animator.SetTrigger(Shoot1);
         this.currentAmmo--;
+        if (muzzle != null)
+        {
+            muzzle.Play();
+        }
     }
 
     private bool TriggerPressed

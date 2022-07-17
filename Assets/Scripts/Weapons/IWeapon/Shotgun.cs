@@ -19,6 +19,7 @@ public class Shotgun : BaseWeapon
     public float ammoCountPerShot;
     public float bulletCooldown;
     public float spreadAngle;
+    public ParticleSystem muzzle;
 
     private float currentTimeToShot;
     private bool blocked;
@@ -26,6 +27,10 @@ public class Shotgun : BaseWeapon
 
     private void Shoot()
     {
+        if (muzzle != null)
+        {
+            muzzle.Play();
+        }
         this.OnShot?.Invoke();
 
         Vector3 leftDirection = Vector3.Lerp(-this.spawnPoint.right, this.transform.forward, this.spreadAngle.Remap(90, 0, 0, 1));

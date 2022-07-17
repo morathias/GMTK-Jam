@@ -22,10 +22,16 @@ public class RailGun : BaseWeapon
     public float damage = 5;
     public float raycastRadius = .5f;
 
+    public ParticleSystem muzzle;
+
     private Plane plane;
 
     public void Shoot()
     {
+        if (muzzle != null)
+        {
+            muzzle.Play();
+        }
         this.OnShot?.Invoke();
         this.StartCoroutine(this.AfterFrameShot());
         this.currentTimeToShot = Time.time + this.bulletCooldown;

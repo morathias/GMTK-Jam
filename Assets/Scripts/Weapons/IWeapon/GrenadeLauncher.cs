@@ -17,6 +17,7 @@ public class GrenadeLauncher : BaseWeapon
     public Transform spawnPoint;
     public float shootingForce;
     public float bulletCooldown;
+    public ParticleSystem muzzle;
 
     private Plane plane;
     private bool blocked;
@@ -28,6 +29,10 @@ public class GrenadeLauncher : BaseWeapon
         this.StartCoroutine(this.AfterFrameShot());
         this.currentTimeToShot = Time.time + this.bulletCooldown;
         this.currentAmmo--;
+        if (muzzle != null)
+        {
+            muzzle.Play();
+        }
     }
 
     private IEnumerator AfterFrameShot()
