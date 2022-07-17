@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3210133966244604382}
   - component: {fileID: 8298982695907061233}
   - component: {fileID: 535714793014869687}
+  - component: {fileID: 1211758521725648979}
   m_Layer: 7
   m_Name: D20Enemy
   m_TagString: Untagged
@@ -191,6 +192,19 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8381813803574805475, guid: a46ac9b9fa1fa7e4f9084f943574044c, type: 3}
   hp: {fileID: -754305040492141180}
   bulletCount: 4
+--- !u!114 &1211758521725648979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133716140724915095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df239cf7577be4d4298e32e43638b295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbToSpawn: {fileID: 4958902557145403442, guid: dad3f39bb57ee8646a83ff7df9c11e31, type: 3}
 --- !u!1 &2153335033722370023
 GameObject:
   m_ObjectHideFlags: 0

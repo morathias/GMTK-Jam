@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 20581260663726299}
   - component: {fileID: 7448787360830246926}
   - component: {fileID: 8135858175984175597}
+  - component: {fileID: 4005720524452062184}
   - component: {fileID: 8298982695907061233}
   m_Layer: 7
   m_Name: D6Enemy
@@ -153,6 +154,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 7371010901389816092}
+--- !u!114 &4005720524452062184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133716140724915095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df239cf7577be4d4298e32e43638b295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbToSpawn: {fileID: 1153242699098990974, guid: 54925ac13ea3e0d4ca292d4adb8676f1, type: 3}
 --- !u!195 &8298982695907061233
 NavMeshAgent:
   m_ObjectHideFlags: 0
