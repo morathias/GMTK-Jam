@@ -6,12 +6,22 @@ public class Enemy : MonoBehaviour
 {
     public event Action<Enemy> OnFinishedBouncing;
     public float bounceDownTime;
+    public Transform gun;
 
     private EnemyBehaviour[] enemyBehaviours;
+    Transform playerTransform;
 
     private void Awake()
     {
         this.enemyBehaviours = this.GetComponentsInChildren<EnemyBehaviour>();
+    }
+
+    private void Update()
+    {
+        if (gun != null)
+        {
+            gun.LookAt(playerTransform);
+        }
     }
 
     public void BounceDown()
@@ -24,6 +34,7 @@ public class Enemy : MonoBehaviour
 
     public void SetupBehaviours(Player player)
     {
+        playerTransform = player.transform;
         foreach (EnemyBehaviour item in this.enemyBehaviours)
         {
             item.Setup(player);
