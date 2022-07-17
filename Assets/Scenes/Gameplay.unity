@@ -5738,7 +5738,7 @@ MonoBehaviour:
     - {fileID: 244234654}
     - {fileID: 1046805392}
     - {fileID: 331050465}
-  worldUnlockWaves: 01000000020000000300000004000000
+  worldUnlockWaves: 0100000004000000070000000a000000
   allEnemies: []
   allWorlds:
   - {fileID: 543450651609037400}
