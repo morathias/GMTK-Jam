@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 8381813803574805472}
-  force: 1000
+  force: 500
   damage: {fileID: 2604857839086184667}
   bulletLifetime: 3
 --- !u!114 &2604857839086184667
@@ -267,7 +267,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3592920121253876119}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.40089378
   m_Height: 10.26682

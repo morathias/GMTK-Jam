@@ -245,6 +245,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2133716140724915116}
     m_Modifications:
     - target: {fileID: 1767074929004314648, guid: ea1bb8452228a70439cf7fe60c114b27, type: 3}
+      propertyPath: cadence
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767074929004314648, guid: ea1bb8452228a70439cf7fe60c114b27, type: 3}
       propertyPath: usesAmmo
       value: 0
       objectReference: {fileID: 0}

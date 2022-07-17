@@ -9,30 +9,30 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        damage.OnDamage += OnDamageHandler;
-        Destroy(gameObject, bulletLifetime);
+        this.damage.OnDamage += this.OnDamageHandler;
+        Destroy(this.gameObject, this.bulletLifetime);
     }
 
     private void OnDamageHandler()
     {
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void AddForce(Vector3 direction)
     {
-        rigidbody.AddForce(direction * force);
+        this.rigidbody.AddForce(direction * this.force);
     }
 
     private void OnValidate()
     {
-        if (rigidbody == null)
+        if (this.rigidbody == null)
         {
-            rigidbody = GetComponent<Rigidbody>();
+            this.rigidbody = this.GetComponent<Rigidbody>();
         }
 
-        if (damage == null)
+        if (this.damage == null)
         {
-            damage = GetComponent<Damage>();
+            this.damage = this.GetComponent<Damage>();
         }
     }
 }
