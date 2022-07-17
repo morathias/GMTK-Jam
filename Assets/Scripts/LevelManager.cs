@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
 
     public event Action OnLevelUpStarted;
     public event Action OnLevelUpEnded;
+    public event Action OnEnemiesSpawn;
 
     public NavMeshSurface navMeshSurface;
 
@@ -118,6 +119,8 @@ public class LevelManager : MonoBehaviour
     {
         this.allEnemies.Clear();
 
+        allEnemies = new List<Enemy>();
+
         List<Enemy> allNewEnemies = new List<Enemy>();
         foreach (World world in this.allWorlds.Where(x => x.IsActive))
         {
@@ -126,6 +129,8 @@ public class LevelManager : MonoBehaviour
 
         this.allEnemies = allNewEnemies;
         this.leveling = false;
+
+        OnEnemiesSpawn?.Invoke();
     }
 
     private void Update()

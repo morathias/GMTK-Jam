@@ -9,21 +9,42 @@ public class GameplayUI : MonoBehaviour
 {
     [SerializeField] HP PlayerHP;
     [SerializeField] Image hpBar;
-    [SerializeField] Animator anim;
+    [SerializeField] Animator hpBarAnim;
 
     [SerializeField] TextMeshProUGUI[] waveTexts;
 
+    [SerializeField] Animator enemyRemAnim;
+    [SerializeField] TextMeshProUGUI enemiesRemaining;
+
     [SerializeField] LevelManager levelManager;
+
+    int currentTotalEnemies;
 
     void Start()
     {
         PlayerHP.OnDamage += UpdatePlayerHP;
         PlayerHP.OnDead += EndGame;
-        levelManager.OnLevelUpStarted += UpdateWaveView;
-        UpdateWaveView();
+        levelManager.OnLevelUpStarted += OnLevelStart;
+        levelManager.OnEnemiesSpawn += OnEnemiesSpawn;
+        UpdateView();
     }
 
-    private void UpdateWaveView()
+    private void OnEnemiesSpawn()
+    {
+        currentTotalEnemies = levelManager.allEnemies.Count;
+        enemiesRemaining.text = currentTotalEnemies.ToString();
+        foreach (var item in levelManager.allEnemies)
+        {
+            item.GetComponent<HP>().OnDead += OnEnemyDead;
+        }
+    }
+
+    private void OnLevelStart()
+    {
+        UpdateView();
+    }
+
+    private void UpdateView()
     {
         foreach (var item in waveTexts)
         {
@@ -31,9 +52,16 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
+    private void OnEnemyDead()
+    {
+        currentTotalEnemies--;
+        enemiesRemaining.text = currentTotalEnemies.ToString();
+        enemyRemAnim.SetTrigger("count");
+    }
+
     private void UpdatePlayerHP()
     {
-        anim.SetTrigger("hit");
+        hpBarAnim.SetTrigger("hit");
         hpBar.fillAmount = PlayerHP.currentHP / PlayerHP.maxHP;
     }
 
