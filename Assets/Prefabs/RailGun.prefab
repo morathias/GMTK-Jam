@@ -5700,7 +5700,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 5223114968200709768}
   bulletCooldown: 1
   shouldAimMouse: 1
-  damage: 5
+  damage: 10
   raycastRadius: 1
   muzzle: {fileID: 5386012406886176403}
 --- !u!1 &5223114968200709769
