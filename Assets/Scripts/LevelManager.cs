@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
 
     private bool leveling;
     private int deadEnemyCount;
-    private int currentWave;
+    public int currentWave;
 
     private void Awake()
     {
