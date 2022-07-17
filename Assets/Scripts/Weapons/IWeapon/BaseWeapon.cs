@@ -28,8 +28,8 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
 
     public abstract void Trigger();
 
-    public void OnGUI()
+    /*public void OnGUI()
     {
         GUI.Label(new Rect(100, 0, 600, 600), $"{this.CurrentAmmo}");
-    }
+    }*/
 }

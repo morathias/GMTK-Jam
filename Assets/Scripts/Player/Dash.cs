@@ -108,8 +108,8 @@ public class Dash : MonoBehaviour
     }
 
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 800, 800), $"CanDash {this.CanDash}");
-    }
+    }*/
 }
