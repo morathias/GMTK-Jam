@@ -10,6 +10,12 @@ public class PlayerJumper : MonoBehaviour
         private set;
     }
 
+    public bool IsJumping
+    {
+        get;
+        private set;
+    }
+    
     public event Action<float> OnJumpStarted;
     public event Action OnJumpEnded;
     public event Action<float> OnLandStarted;
@@ -46,6 +52,7 @@ public class PlayerJumper : MonoBehaviour
         Vector3 targetJumpingPosition = new Vector3(this.transform.position.x, this.transform.position.y + this.jumpHeight, this.transform.position.z);
         this.characterController.enabled = false;
         this.OnJumpStarted?.Invoke(this.jumpTime);
+        IsJumping = true;
         this.transform.DOMove(targetJumpingPosition, this.jumpTime).OnComplete(() => { this.OnJumpEnded?.Invoke(); });
     }
 
@@ -61,6 +68,7 @@ public class PlayerJumper : MonoBehaviour
             .SetEase(Ease.OutBounce)
             .OnComplete(() =>
             {
+                IsJumping = false;
                 this.OnLandEnded?.Invoke();
                 this.characterController.enabled = true;
             });
