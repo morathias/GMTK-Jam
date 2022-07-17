@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.AI.Navigation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -39,6 +38,13 @@ public class World : MonoBehaviour
 
     private int wallUnlockTier;
 
+    public List<SpawnPoints> collectableSpawnPoints;
+
+    [Serializable]
+    public class SpawnPoints
+    {
+        public List<Transform> collectablesSpawnPoint = new List<Transform>();
+    }
     public void Rotate()
     {
         clip.Play();

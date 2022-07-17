@@ -8,6 +8,7 @@ public class HP : MonoBehaviour
 
     public Action OnDead;
     public Action OnDamage;
+    public Action OnChange;
     
     void Start()
     {
@@ -27,5 +28,12 @@ public class HP : MonoBehaviour
         
         if (currentHP == 0)
             OnDead?.Invoke();
+    }
+
+    public void Heal(float amount)
+    {
+        currentHP += amount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        OnChange?.Invoke();
     }
 }

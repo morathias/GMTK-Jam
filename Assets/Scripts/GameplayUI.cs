@@ -23,6 +23,7 @@ public class GameplayUI : MonoBehaviour
     void Start()
     {
         PlayerHP.OnDamage += UpdatePlayerHP;
+        PlayerHP.OnChange += UpdatePlayerHP;
         PlayerHP.OnDead += EndGame;
         levelManager.OnLevelUpStarted += OnLevelStart;
         levelManager.OnEnemiesSpawn += OnEnemiesSpawn;

@@ -15,4 +15,18 @@ public static class Extensions
             throw new Exception("List Is Empty");
         return UnityEngine.Random.Range(0, list.Count);
     }
+    
+    public static World Random(this List<World> list)
+    {
+        if (list.Count == 0) 
+            throw new Exception("List Is Empty");
+        return list[UnityEngine.Random.Range(0, list.Count)];
+    }
+    
+    public static Transform Random(this List<Transform> list)
+    {
+        if (list.Count == 0) 
+            throw new Exception("List Is Empty");
+        return list[UnityEngine.Random.Range(0, list.Count)];
+    }
 }

@@ -2348,6 +2348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -5770,6 +5771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1788391571}
   - component: {fileID: 1788391572}
+  - component: {fileID: 1788391573}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5847,6 +5849,25 @@ MonoBehaviour:
   timeBeforeSpawn: 1
   levelUpTime: 2.5
   currentWave: 0
+--- !u!114 &1788391573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788391570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c35d621caeb42f895f222b02aefbd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelManager: {fileID: 1788391572}
+  playerJumper: {fileID: 1429496613}
+  minTime: 15
+  maxTime: 25
+  maxCollectables: 2
+  medkit: {fileID: 5497098779874930317, guid: 49a3d5307ff13684a8a19c3980621eba, type: 3}
+  instances: []
 --- !u!1001 &1849223047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6486,7 +6507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848475365074267242, guid: 1551f9b4c78367145a109c594b4d78e5, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 3319
+      value: 7415
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1551f9b4c78367145a109c594b4d78e5, type: 3}
