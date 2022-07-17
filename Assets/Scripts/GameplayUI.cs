@@ -18,8 +18,12 @@ public class GameplayUI : MonoBehaviour
 
     [SerializeField] LevelManager levelManager;
 
+    public Player player;
+    
     int currentTotalEnemies;
 
+    public LosePopup losePopup;
+    
     void Start()
     {
         PlayerHP.OnDamage += UpdatePlayerHP;
@@ -69,6 +73,9 @@ public class GameplayUI : MonoBehaviour
     private void EndGame()
     {
         PlayerPrefs.SetInt("wave", levelManager.currentWave + 1);
-        SceneManager.LoadScene(0);
+        player.Block(true);
+        player.gameObject.SetActive(false);
+        player.weaponSwitcher.currentIWeapon.enabled = false;
+        losePopup.gameObject.SetActive(true);
     }
 }

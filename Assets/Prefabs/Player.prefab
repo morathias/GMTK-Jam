@@ -5230,6 +5230,7 @@ MonoBehaviour:
   playerView: {fileID: 7248934802135498052}
   dash: {fileID: 5995021560704185198}
   weaponSwitcher: {fileID: 6282754564654928314}
+  animator: {fileID: 8620247829391912524}
 --- !u!114 &8718054046205187968
 MonoBehaviour:
   m_ObjectHideFlags: 0
