@@ -8,7 +8,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
 
     public bool usesAmmo = true;
     public int ammo = 5;
-    protected int currentAmmo = 5;
+    public int currentAmmo = 5;
     public float speedMultiplier = 1;
 
     protected virtual void OnEnable()

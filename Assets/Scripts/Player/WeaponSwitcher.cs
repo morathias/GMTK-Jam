@@ -13,6 +13,9 @@ public class WeaponSwitcher : MonoBehaviour
     public List<Transform> faceOrientations;
 
     public Transform orientation;
+
+    public System.Action OnWeaponSwitch;
+
     private void Start()
     {
         this.SwitchWeapon(this.startingWeaponIndex);
@@ -31,6 +34,8 @@ public class WeaponSwitcher : MonoBehaviour
         currentWeapon = allWeapons[weaponIndex];
         currentIWeapon = currentWeapon.GetComponent<BaseWeapon>();
         RunActivateAnimation(currentWeapon);
+
+        OnWeaponSwitch?.Invoke();
     }
 
     public void SetWeaponDependingOnFaceOrientation()

@@ -6,7 +6,13 @@ public class Player : MonoBehaviour
     public PlayerRotation playerRotation;
     public PlayerView playerView;
     public Dash dash;
-    
+    public WeaponSwitcher weaponSwitcher;
+
+    private void Awake()
+    {
+        weaponSwitcher.OnWeaponSwitch += UpdateBulletsUI;
+    }
+
     public void Block(bool blocked)
     {
         playerMovement.enabled = !blocked;
@@ -17,6 +23,12 @@ public class Player : MonoBehaviour
     private void Update()
     {
         playerView.IsRunning(playerMovement.Direction.magnitude, playerMovement.Direction.normalized);
+        playerView.UpdateBulletsUI(weaponSwitcher.currentIWeapon.currentAmmo);
+    }
+
+    private void UpdateBulletsUI() 
+    {
+        playerView.SetupBulletsUI(weaponSwitcher.currentIWeapon.ammo, weaponSwitcher.currentIWeapon.transform.GetSiblingIndex());
     }
 
 }
