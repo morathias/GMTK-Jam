@@ -240,6 +240,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8f1589ae25df59248afb6baf837739d0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 546815d80c4da994a806d8c581323655, type: 2}
     - target: {fileID: 919132149155446097, guid: 8f1589ae25df59248afb6baf837739d0, type: 3}
       propertyPath: m_Name
       value: Bullet
@@ -255,8 +259,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f1589ae25df59248afb6baf837739d0, type: 3}
   m_PrefabInstance: {fileID: 1109270165152739845}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &2014794267400292876
-SphereCollider:
+--- !u!136 &3845163509294507934
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -265,9 +269,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.40089375
-  m_Center: {x: 0, y: 0, z: -0.0000009536743}
+  m_Radius: 0.40089378
+  m_Height: 11.257208
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.00000011920929, z: 0}
 --- !u!4 &643542145548113390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8f1589ae25df59248afb6baf837739d0, type: 3}
