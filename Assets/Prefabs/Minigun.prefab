@@ -229,8 +229,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3198082526369806057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.016, y: -0.34, z: 3.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.519, y: -0.289, z: 3.3899999}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3198082526376368619}
@@ -283,12 +283,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a8f91f0b0f61c4aa83b0b8f8686c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usesAmmo: 1
   ammo: 20
+  currentAmmo: 5
   speedMultiplier: 0.3
   spawnPoint: {fileID: 3198082526369806056}
   cadence: 0.1
   bulletPrefab: {fileID: 8381813803574805475, guid: da52c41b61249864787b481b8a8a46a1, type: 3}
   animator: {fileID: 5697859357181216509}
+  shouldAimMouse: 1
 --- !u!95 &5697859357181216509
 Animator:
   serializedVersion: 4
