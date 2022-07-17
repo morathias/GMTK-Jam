@@ -349,6 +349,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.137
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5039206
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.4959349
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.50005627
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5000564
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.353
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45.006
+      objectReference: {fileID: 0}
+    - target: {fileID: -6083994199310384536, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 45.008
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7e2d6f47dc2399b40913b269550126a6, type: 3}
       propertyPath: m_Name
       value: D8_enemy
