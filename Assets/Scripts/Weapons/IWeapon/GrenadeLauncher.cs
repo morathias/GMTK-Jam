@@ -41,7 +41,6 @@ public class GrenadeLauncher : BaseWeapon
         GrenadeLauncherProjectile newProjectile = Instantiate(this.projectilePrefab);
         newProjectile.transform.position = this.spawnPoint.transform.position;
         newProjectile.rigidbody.AddForce(this.spawnPoint.transform.forward * this.shootingForce);
-        newProjectile.rigidbody.AddTorque(Random.insideUnitSphere * 500f);
     }
 
     private void Update()
