@@ -6,7 +6,7 @@ public class Sword : BaseWeapon
 {
     public event Action OnShot;
     public Collider collider;
-
+    public TrailRenderer trailRenderer;
     public bool CanShot
     {
         get { return (Time.time >= this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
@@ -32,6 +32,7 @@ public class Sword : BaseWeapon
 
         this.OnShot?.Invoke();
         this.anim.SetTrigger("hit");
+        trailRenderer.gameObject.SetActive(true);
         this.currentTimeToShot = Time.time + this.bulletCooldown;
 
         this.hitColliderCoroutine = this.StartCoroutine(this.HitCollider());
@@ -43,6 +44,9 @@ public class Sword : BaseWeapon
         this.collider.enabled = true;
         yield return new WaitForSeconds(this.colliderActiveTime);
         this.collider.enabled = false;
+
+        trailRenderer.gameObject.SetActive(false);
+        trailRenderer.Clear();
     }
 
     private void Update()

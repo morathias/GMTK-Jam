@@ -5325,7 +5325,7 @@ MonoBehaviour:
   player: {fileID: 8718054046205187971}
   diceView: {fileID: 3139038619570077402}
   rb: {fileID: 37592466231537972}
-  dashCooldown: 3
+  dashCooldown: 0.5
   dashTime: 0.25
   dashForce: 3
   rollCount: 4
