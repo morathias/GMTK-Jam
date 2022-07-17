@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4967176753788873321}
   - component: {fileID: 20581260663726299}
   - component: {fileID: 7448787360830246926}
+  - component: {fileID: 3210133966244604382}
   - component: {fileID: 8298982695907061233}
   - component: {fileID: 535714793014869687}
   m_Layer: 7
@@ -140,6 +141,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   distanceToShoot: 15
+--- !u!114 &3210133966244604382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133716140724915095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a3a54fc72d2941aa65804c2b3b90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 2849510899685889021}
 --- !u!195 &8298982695907061233
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -321,6 +335,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a6efb137d11eddb409556eb4cb196614, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8516407280089931022, guid: a6efb137d11eddb409556eb4cb196614, type: 3}
+      propertyPath: m_Name
+      value: enemy
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a6efb137d11eddb409556eb4cb196614, type: 3}
       propertyPath: m_Name
