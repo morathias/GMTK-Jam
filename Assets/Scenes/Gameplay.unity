@@ -3306,6 +3306,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5328912956636509903, guid: 63136748807c4ae4fb12483ff7347cc3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5328912957334281501, guid: 63136748807c4ae4fb12483ff7347cc3, type: 3}
       propertyPath: wallsToUnlock.Array.size
       value: 1
