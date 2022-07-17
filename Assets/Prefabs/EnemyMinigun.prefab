@@ -285,11 +285,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usesAmmo: 1
   ammo: 20
+  currentAmmo: 5
   speedMultiplier: 0.3
   spawnPoint: {fileID: 3198082526369806056}
   cadence: 0.1
   bulletPrefab: {fileID: 8381813803574805475, guid: a25cbae01a9be8d4f84625e0baf2e621, type: 3}
   animator: {fileID: 5697859357181216509}
+  shouldAimMouse: 0
 --- !u!95 &5697859357181216509
 Animator:
   serializedVersion: 4

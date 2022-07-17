@@ -13,6 +13,7 @@ public class Minigun : BaseWeapon
 
     private float currentTimeToShot;
     private Plane plane;
+    public bool shouldAimMouse = true;
 
     private bool CanShoot
     {
@@ -49,7 +50,10 @@ public class Minigun : BaseWeapon
 
         this.animator.SetBool("shoot", this.TriggerPressed);
 
-        this.TargetMouse();
+        if (this.shouldAimMouse)
+        {
+            this.TargetMouse();
+        }
     }
 
     private void TargetMouse()

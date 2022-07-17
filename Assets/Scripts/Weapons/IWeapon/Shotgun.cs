@@ -10,7 +10,8 @@ public class Shotgun : BaseWeapon
     {
         get { return (Time.time >= this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
     }
-
+    
+    public bool shouldAimMouse = true;
     public AudioSource shootAS;
     public AudioSource reloadAS;
     public Pellet projectilePrefab;
@@ -80,7 +81,10 @@ public class Shotgun : BaseWeapon
             this.Trigger();
         }
 
-        this.TargetMouse();
+        if (shouldAimMouse)
+        {
+            this.TargetMouse();
+        }
     }
 
     private void TargetMouse()

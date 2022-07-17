@@ -12,6 +12,7 @@ public class GrenadeLauncher : BaseWeapon
         get { return (Time.time >= this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
     }
 
+    public bool shouldAimMouse = true;
     public GrenadeLauncherProjectile projectilePrefab;
     public Transform spawnPoint;
     public float shootingForce;
@@ -45,7 +46,10 @@ public class GrenadeLauncher : BaseWeapon
             this.Trigger();
         }
 
-        this.TargetMouse();
+        if (this.shouldAimMouse)
+        {
+            this.TargetMouse();
+        }
     }
 
     private void TargetMouse()

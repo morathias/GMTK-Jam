@@ -14,6 +14,7 @@ public class RailGun : BaseWeapon
     public ParticleSystem projectilePrefab;
     public Transform spawnPoint;
     public float bulletCooldown;
+    public bool shouldAimMouse = true;
 
     private float currentTimeToShot;
     private bool blocked;
@@ -65,7 +66,10 @@ public class RailGun : BaseWeapon
             this.Trigger();
         }
 
-        this.TargetMouse();
+        if (shouldAimMouse)
+        {
+            this.TargetMouse();
+        }
     }
 
     private void TargetMouse()

@@ -12,6 +12,7 @@ public class Pistol : BaseWeapon
     public Animator animator;
 
     private float currentTimeToShot;
+    public bool shouldAimMouse = true;
 
     public bool CanShoot
     {
@@ -54,7 +55,10 @@ public class Pistol : BaseWeapon
             this.Trigger();
         }
 
-        this.TargetMouse();
+        if (this.shouldAimMouse)
+        {
+            this.TargetMouse();
+        }
     }
 
     private void TargetMouse()

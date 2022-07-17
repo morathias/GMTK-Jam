@@ -216,7 +216,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usesAmmo: 1
   ammo: 5
+  currentAmmo: 5
   speedMultiplier: 0.9
+  shouldAimMouse: 0
   shootAS: {fileID: 1119335406438269287}
   reloadAS: {fileID: 1119335406438269280}
   projectilePrefab: {fileID: 3564125800261752023, guid: b8a2026d39493c445bfc5de8adc5cbfd, type: 3}
