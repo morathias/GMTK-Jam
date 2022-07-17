@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,7 +11,14 @@ public class GrenadeLauncherProjectile : MonoBehaviour
 
     public float radius = 4;
     public float damage = 3;
-    
+
+    private int layerEnemy;
+
+    private void Start()
+    {
+        layerEnemy = 1 << LayerMask.NameToLayer("Enemy");
+    }
+
     private void OnGroundCollisionHandler()
     {
         //explosion, trigger particles
@@ -28,7 +36,7 @@ public class GrenadeLauncherProjectile : MonoBehaviour
         this.OnGroundCollisionHandler();
         this.collided = true;
         this.transform.DOScale(0f, 0.5f).OnComplete(() => Destroy(this.gameObject));
-        Collider[] all = Physics.OverlapSphere(other.contacts[0].point, radius, Physics.AllLayers);
+        Collider[] all = Physics.OverlapSphere(other.contacts[0].point, radius, layerEnemy);
         for (int i = 0; i < all.Length; i++)
         {
             Collider hit = all[i];
