@@ -51,10 +51,13 @@ public class PlayerView : MonoBehaviour
         {
             Destroy(bulletsUI.GetChild(i).gameObject);
         }
-        for (int i = 0; i < bulletAmount; i++)
+        if (bulletSprites[bulletType] != null)
         {
-            Image bulletUI = Instantiate(bulletUIPrefab, bulletsUI).GetComponent<Image>();
-            bulletUI.sprite = bulletSprites[bulletType];
+            for (int i = 0; i < bulletAmount; i++)
+            {
+                Image bulletUI = Instantiate(bulletUIPrefab, bulletsUI).GetComponent<Image>();
+                bulletUI.sprite = bulletSprites[bulletType];
+            }
         }
     }
 

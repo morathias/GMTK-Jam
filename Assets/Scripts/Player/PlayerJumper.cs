@@ -22,6 +22,7 @@ public class PlayerJumper : MonoBehaviour
     public event Action OnLandEnded;
     public LayerMask jumpLM;
     public ParticleSystem dustParticles, landingParticles;
+    public Animator anim;
 
     public CharacterController characterController;
     public float jumpHeight;
@@ -53,6 +54,7 @@ public class PlayerJumper : MonoBehaviour
 
     public void StartJumpPlayerOut()
     {
+        anim.SetBool("Jumping", true);
         em.enabled = false;
         Vector3 targetJumpingPosition = new Vector3(this.transform.position.x, this.transform.position.y + this.jumpHeight, this.transform.position.z);
         this.characterController.enabled = false;
@@ -63,6 +65,7 @@ public class PlayerJumper : MonoBehaviour
 
     public void StartJumpPlayerIn()
     {
+        anim.SetBool("Jumping", false);
         RaycastHit raycastHit;
         Physics.Raycast(this.transform.position, -Vector3.up, out raycastHit, float.MaxValue, this.jumpLM);
         Vector3 targetJumpingPosition = raycastHit.point;
