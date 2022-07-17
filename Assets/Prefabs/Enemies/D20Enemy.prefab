@@ -128,6 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 8298982695907061233}
+  view: {fileID: 7536694723687503306}
+  rotationOffset: {x: -20, y: 0, z: 0}
 --- !u!114 &7448787360830246926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +230,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2153335033722370023}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 1.94, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -236,7 +238,7 @@ Transform:
   - {fileID: 8486957951009482884}
   m_Father: {fileID: 2133716140724915116}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
 --- !u!1001 &6336366995746711544
 PrefabInstance:
   m_ObjectHideFlags: 0
