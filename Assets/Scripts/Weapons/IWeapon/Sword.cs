@@ -64,6 +64,9 @@ public class Sword : BaseWeapon
 
     public override void Block()
     {
+        trailRenderer.gameObject.SetActive(false);
+        trailRenderer.Clear();
+        this.collider.enabled = false;
         this.blocked = true;
     }
 
