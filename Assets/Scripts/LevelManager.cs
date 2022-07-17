@@ -135,10 +135,12 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.J))
         {
             this.LevelUp();
         }
+#endif
 
         this.CheckForCurrentEnemyCount();
     }
