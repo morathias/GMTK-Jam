@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceDownTime: 1.3
+  gun: {fileID: 4858756768288749831}
 --- !u!65 &2133716140724915113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -155,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5118563937410747219}
+  hitParticle: {fileID: 0}
 --- !u!114 &8082358439738598260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786cb3c3207018549b73b91a6a1132d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &4858756768288749831 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1119335406438269285, guid: bfe17cdf38fcadd47b807b7e276b7730, type: 3}
+  m_PrefabInstance: {fileID: 5540949362708150370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6164007880894881555
 PrefabInstance:
   m_ObjectHideFlags: 0

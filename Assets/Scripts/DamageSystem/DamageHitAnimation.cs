@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageHitAnimation : MonoBehaviour
 {
     [SerializeField] Animator anim;
+    [SerializeField] ParticleSystem hitParticle;
 
     private void Start()
     {
@@ -14,5 +15,9 @@ public class DamageHitAnimation : MonoBehaviour
     void OnDamage()
     {
         anim.SetTrigger("hit");
+        if (hitParticle != null)
+        {
+            hitParticle.Play();
+        }
     }
 }
