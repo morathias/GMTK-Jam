@@ -10,7 +10,7 @@ public class Shotgun : BaseWeapon
     {
         get { return (Time.time >= this.currentTimeToShot) && !this.blocked && this.HasAmmo; }
     }
-    
+
     public bool shouldAimMouse = true;
     public AudioSource shootAS;
     public AudioSource reloadAS;
@@ -52,7 +52,11 @@ public class Shotgun : BaseWeapon
             this.currentTimeToShot = Time.time + this.bulletCooldown;
         }
 
-        this.shootAS.Play();
+        if (this.shootAS != null)
+        {
+            this.shootAS.Play();
+        }
+
         this.StartCoroutine(this.AfterFrameSFX());
         this.currentAmmo--;
     }
@@ -63,7 +67,10 @@ public class Shotgun : BaseWeapon
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        this.reloadAS.Play();
+        if (this.reloadAS != null)
+        {
+            this.reloadAS.Play();
+        }
     }
 
 
@@ -81,7 +88,7 @@ public class Shotgun : BaseWeapon
             this.Trigger();
         }
 
-        if (shouldAimMouse)
+        if (this.shouldAimMouse)
         {
             this.TargetMouse();
         }

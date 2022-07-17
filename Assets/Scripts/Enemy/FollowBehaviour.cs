@@ -7,6 +7,9 @@ public class FollowBehaviour : MonoBehaviour, EnemyBehaviour
 
     private Player player;
 
+    public Transform view;
+    public Vector3 rotationOffset;
+
     public void Setup(Player player)
     {
         this.player = player;
@@ -21,5 +24,7 @@ public class FollowBehaviour : MonoBehaviour, EnemyBehaviour
         }
 
         this.navMeshAgent.destination = this.player.transform.position;
+        view.localRotation = Quaternion.identity;
+        view.Rotate(rotationOffset, Space.World);
     }
 }

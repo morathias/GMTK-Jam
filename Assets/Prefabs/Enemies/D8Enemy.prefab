@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 8298982695907061233}
+  view: {fileID: 7536694723687503306}
+  rotationOffset: {x: -20, y: 0, z: 0}
 --- !u!114 &7448787360830246926
 MonoBehaviour:
   m_ObjectHideFlags: 0
