@@ -5175,6 +5175,7 @@ GameObject:
   - component: {fileID: 8718054046205187971}
   - component: {fileID: 8718054046205187968}
   - component: {fileID: 8718054046205187969}
+  - component: {fileID: 1316530450734889134}
   - component: {fileID: 8718054044488406203}
   - component: {fileID: 1429496613}
   - component: {fileID: 5995021560704185198}
@@ -5262,6 +5263,19 @@ MonoBehaviour:
   camera: {fileID: 0}
   view: {fileID: 4546077752412596829}
   rotationOffset: {x: -20, y: 0, z: 0}
+--- !u!114 &1316530450734889134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558341383140995991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058a3a54fc72d2941aa65804c2b3b90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 8620247829391912524}
 --- !u!114 &8718054044488406203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10812,6 +10826,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e6048a3e117770746a2045d9de00c67d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076872376381278444, guid: e6048a3e117770746a2045d9de00c67d, type: 3}
+      propertyPath: m_Name
+      value: Body
       objectReference: {fileID: 0}
     - target: {fileID: 1076872376381278444, guid: e6048a3e117770746a2045d9de00c67d, type: 3}
       propertyPath: m_IsActive
