@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 8381813803574805472}
-  force: 1000
+  force: 2000
   damage: {fileID: 2604857839086184667}
   bulletLifetime: 3
 --- !u!114 &2604857839086184667
