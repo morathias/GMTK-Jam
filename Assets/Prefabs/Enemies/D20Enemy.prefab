@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea57f525516519f4ab56c8fbf0a78d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 5722568241695483872}
   distanceToShoot: 15
 --- !u!114 &3210133966244604382
 MonoBehaviour:
@@ -280,6 +280,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea1bb8452228a70439cf7fe60c114b27, type: 3}
+--- !u!114 &5722568241695483872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1767074929004314648, guid: ea1bb8452228a70439cf7fe60c114b27, type: 3}
+  m_PrefabInstance: {fileID: 6336366995746711544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a8f91f0b0f61c4aa83b0b8f8686c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8903215326669438483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3198082526376368619, guid: ea1bb8452228a70439cf7fe60c114b27, type: 3}
