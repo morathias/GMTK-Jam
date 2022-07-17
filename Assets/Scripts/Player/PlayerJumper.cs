@@ -21,10 +21,13 @@ public class PlayerJumper : MonoBehaviour
     public event Action<float> OnLandStarted;
     public event Action OnLandEnded;
     public LayerMask jumpLM;
+    public ParticleSystem dustParticles, landingParticles;
 
     public CharacterController characterController;
     public float jumpHeight;
     public float jumpTime;
+
+    ParticleSystem.EmissionModule em;
 
     private void Awake()
     {
@@ -35,6 +38,7 @@ public class PlayerJumper : MonoBehaviour
     {
         LevelManager.Instance.OnLevelUpStarted += this.OnLevelUpStartedManager;
         LevelManager.Instance.OnLevelUpEnded += this.OnLevelUpEndedManager;
+        em = dustParticles.emission;
     }
 
     private void OnLevelUpStartedManager()
@@ -49,6 +53,7 @@ public class PlayerJumper : MonoBehaviour
 
     public void StartJumpPlayerOut()
     {
+        em.enabled = false;
         Vector3 targetJumpingPosition = new Vector3(this.transform.position.x, this.transform.position.y + this.jumpHeight, this.transform.position.z);
         this.characterController.enabled = false;
         this.OnJumpStarted?.Invoke(this.jumpTime);
@@ -64,6 +69,7 @@ public class PlayerJumper : MonoBehaviour
         this.characterController.enabled = false;
         this.OnLandStarted?.Invoke(this.jumpTime);
 
+        landingParticles.Play();
         this.transform.DOMove(targetJumpingPosition, this.jumpTime)
             .SetEase(Ease.OutBounce)
             .OnComplete(() =>
@@ -71,6 +77,8 @@ public class PlayerJumper : MonoBehaviour
                 IsJumping = false;
                 this.OnLandEnded?.Invoke();
                 this.characterController.enabled = true;
+
+                em.enabled = true;
             });
     }
 }
