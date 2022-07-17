@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class World : MonoBehaviour
 {
+    public AudioSource clip;
     public int CurrentFace
     {
         get;
@@ -40,6 +41,8 @@ public class World : MonoBehaviour
 
     public void Rotate()
     {
+        clip.Play();
+        clip.pitch = Random.Range(0.8f, 1.2f);
         int faceIndex = Random.Range(0, this.eulers.Length);
         Vector3 toFace = this.eulers[faceIndex];
         this.CurrentFace = faceIndex;
@@ -93,6 +96,8 @@ public class World : MonoBehaviour
             this.world.localScale = Vector3.Lerp(Vector3.one * this.minScale, Vector3.one, this.curve.Evaluate(t));
             yield return null;
         }
+
+        clip.Stop();
 
         this.world.localEulerAngles = toFace;
     }
