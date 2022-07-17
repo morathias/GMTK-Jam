@@ -19,6 +19,7 @@ public class Pistol : BaseWeapon
     }
 
     private bool blocked;
+    private Plane plane;
 
     private static readonly int Shoot1 = Animator.StringToHash("Shoot");
 
@@ -52,6 +53,17 @@ public class Pistol : BaseWeapon
         {
             this.Trigger();
         }
+
+        this.TargetMouse();
+    }
+
+    private void TargetMouse()
+    {
+        this.plane.SetNormalAndPosition(Vector3.up, this.transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        this.plane.Raycast(ray, out float distance);
+        Vector3 worldPosMouse = ray.GetPoint(distance);
+        this.transform.forward = worldPosMouse - this.transform.position;
     }
 
     private Bullet GetBulletInstance()

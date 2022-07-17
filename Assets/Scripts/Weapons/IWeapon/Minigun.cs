@@ -12,6 +12,7 @@ public class Minigun : BaseWeapon
     public Animator animator;
 
     private float currentTimeToShot;
+    private Plane plane;
 
     private bool CanShoot
     {
@@ -47,6 +48,17 @@ public class Minigun : BaseWeapon
         }
 
         this.animator.SetBool("shoot", this.TriggerPressed);
+
+        this.TargetMouse();
+    }
+
+    private void TargetMouse()
+    {
+        this.plane.SetNormalAndPosition(Vector3.up, this.transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        this.plane.Raycast(ray, out float distance);
+        Vector3 worldPosMouse = ray.GetPoint(distance);
+        this.transform.forward = worldPosMouse - this.transform.position;
     }
 
     private Bullet GetBulletInstance()

@@ -21,6 +21,8 @@ public class RailGun : BaseWeapon
     public float damage = 5;
     public float raycastRadius = .5f;
 
+    private Plane plane;
+
     public void Shoot()
     {
         this.OnShot?.Invoke();
@@ -62,6 +64,17 @@ public class RailGun : BaseWeapon
         {
             this.Trigger();
         }
+
+        this.TargetMouse();
+    }
+
+    private void TargetMouse()
+    {
+        this.plane.SetNormalAndPosition(Vector3.up, this.transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        this.plane.Raycast(ray, out float distance);
+        Vector3 worldPosMouse = ray.GetPoint(distance);
+        this.transform.forward = worldPosMouse - this.transform.position;
     }
 
     public override void AddCooldown(float time)

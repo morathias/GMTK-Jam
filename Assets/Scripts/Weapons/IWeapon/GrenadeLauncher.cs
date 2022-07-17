@@ -17,6 +17,7 @@ public class GrenadeLauncher : BaseWeapon
     public float shootingForce;
     public float bulletCooldown;
 
+    private Plane plane;
     private bool blocked;
     private float currentTimeToShot;
 
@@ -43,6 +44,17 @@ public class GrenadeLauncher : BaseWeapon
         {
             this.Trigger();
         }
+
+        this.TargetMouse();
+    }
+
+    private void TargetMouse()
+    {
+        this.plane.SetNormalAndPosition(Vector3.up, this.transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        this.plane.Raycast(ray, out float distance);
+        Vector3 worldPosMouse = ray.GetPoint(distance);
+        this.transform.forward = worldPosMouse - this.transform.position;
     }
 
     public override void AddCooldown(float time)
